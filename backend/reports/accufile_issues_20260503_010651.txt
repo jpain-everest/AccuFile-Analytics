@@ -1,0 +1,35 @@
+================================================================================
+A&H AccuFile - Detailed Issues Report
+================================================================================
+Report Date: 2026-05-03 01:06:51
+
+MISSING FILES (No match found on Shared Drive)
+--------------------------------------------------------------------------------
+1. Policy: AH-2024-001013 - Nu Hospitality Group
+2. Policy: AH-2024-001014 - Xi Agricultural Co-op
+3. Policy: AH-2024-001015 - Omicron Education Foundation
+
+NON-COMPLIANT FILES (Structure/Completeness Issues)
+--------------------------------------------------------------------------------
+1. Policy: AH-2024-001003
+   Missing Documents: Policy Document
+   Issue: Missing 1 required document(s)
+2. Policy: AH-2024-001005
+   Missing Documents: Application
+   Issue: Missing 1 required document(s)
+   Issue: Folder structure does not match standard
+3. Policy: AH-2024-001006
+   Missing Documents: Quote/Binder
+   Issue: Missing 1 required document(s)
+   Issue: File/folder names do not follow conventions
+4. Policy: AH-2024-001008
+   Missing Documents: Application, Quote/Binder
+   Issue: Missing 2 required document(s)
+   Issue: Folder structure does not match standard
+5. Policy: AH-2024-001011
+   Missing Documents: Policy Document
+   Issue: Missing 1 required document(s)
+   Issue: Folder structure does not match standard
+   Issue: File/folder names do not follow conventions
+
+================================================================================

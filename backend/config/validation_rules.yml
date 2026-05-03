@@ -1,0 +1,177 @@
+# File Validation Rules Configuration
+# Defines requirements for file structure, documents, naming, and metadata
+
+# Policy type definitions
+policy_types:
+  commercial:
+    name: "Commercial A&H"
+    description: "Commercial Accident & Health policies"
+    
+    # Required documents by type
+    required_documents:
+      - type: "application"
+        name: "Insurance Application"
+        required: true
+        file_patterns:
+          - "*application*"
+          - "*app*"
+      
+      - type: "quote"
+        name: "Quote or Binder"
+        required: true
+        file_patterns:
+          - "*quote*"
+          - "*binder*"
+          - "*proposal*"
+      
+      - type: "policy"
+        name: "Policy Document"
+        required: true
+        file_patterns:
+          - "*policy*"
+          - "*declarations*"
+      
+      - type: "inspection"
+        name: "Inspection Report"
+        required: false
+        file_patterns:
+          - "*inspection*"
+          - "*inspection report*"
+      
+      - type: "medical"
+        name: "Medical Records/Underwriting"
+        required: false
+        file_patterns:
+          - "*medical*"
+          - "*underwriting*"
+          - "*uw*"
+    
+    # Folder structure requirements
+    folder_structure:
+      # Expected naming pattern
+      pattern: "[PolicyNumber]_[InsuredName]"
+      
+      # Maximum folder depth
+      max_depth: 3
+      
+      # Allowed subfolders
+      allowed_subfolders:
+        - "Documents"
+        - "Correspondence"
+        - "Underwriting"
+        - "Medical"
+        - "Inspections"
+        - "Supporting"
+    
+    # Naming convention requirements
+    naming_conventions:
+      # File naming pattern (regex)
+      file_pattern: "^[A-Za-z0-9\\-_\\.\\s]+\\.[a-z]{2,4}$"
+      
+      # Forbidden characters
+      forbidden_chars: "<>:\"/\\|?*"
+      
+      # Maximum filename length
+      max_filename_length: 255
+      
+      # Recommended prefix
+      recommended_prefix: "[PolicyNumber]"
+      
+      # Forbidden patterns
+      forbidden_patterns:
+        - "^~"
+        - "^\\."
+
+  individual:
+    name: "Individual A&H"
+    description: "Individual Accident & Health policies"
+    
+    required_documents:
+      - type: "application"
+        name: "Insurance Application"
+        required: true
+      
+      - type: "policy"
+        name: "Policy Document"
+        required: true
+      
+      - type: "medical"
+        name: "Medical Underwriting"
+        required: false
+    
+    folder_structure:
+      pattern: "[PolicyNumber]_[InsuredName]"
+      max_depth: 2
+      allowed_subfolders:
+        - "Documents"
+        - "Medical"
+
+# Validation checks to perform
+validation_checks:
+  # Document completeness validation
+  documents:
+    enabled: true
+    check_type: "file_content"  # Options: file_content, filename_pattern, folder_structure
+    severity: "critical"  # Options: critical, high, medium, low
+    
+  # Folder structure validation
+  structure:
+    enabled: true
+    check_type: "folder_structure"
+    severity: "high"
+    
+  # Naming conventions validation
+  naming:
+    enabled: true
+    check_type: "filename_pattern"
+    severity: "medium"
+    
+  # Metadata validation
+  metadata:
+    enabled: true
+    check_type: "metadata_tags"
+    severity: "medium"
+    
+    # Required metadata tags
+    required_tags:
+      - "policy_number"
+      - "insured_name"
+      - "effective_date"
+      - "underwriter"
+
+# Compliance levels and thresholds
+compliance_levels:
+  compliant:
+    name: "Compliant"
+    criteria: "All critical checks pass"
+    action: "No action needed"
+    pass_score: 100
+  
+  needs_review:
+    name: "Needs Review"
+    criteria: "1-2 non-critical checks fail"
+    action: "Review and determine if remediation needed"
+    pass_score: 75
+  
+  non_compliant:
+    name: "Non-Compliant"
+    criteria: ">2 checks fail or critical documents missing"
+    action: "Remediation required"
+    pass_score: 50
+
+# Scoring configuration
+scoring:
+  # Weight of each check in overall compliance score
+  weights:
+    documents: 0.4
+    structure: 0.3
+    naming: 0.2
+    metadata: 0.1
+  
+  # Penalty for each type of issue
+  penalties:
+    missing_critical_document: 25
+    missing_optional_document: 10
+    structure_violation: 15
+    naming_violation: 8
+    metadata_missing: 10

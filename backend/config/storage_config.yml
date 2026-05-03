@@ -1,0 +1,65 @@
+# Storage System Configuration
+# Defines paths and patterns for file matching on Shared Drive and local storage
+
+# Shared Drive configuration
+shared_drive_path: "data/shared_drive"
+
+# Local cache and processing path
+local_cache_path: "data/cache"
+
+# File matching patterns
+file_patterns:
+  # Policy number format patterns
+  policy_number_patterns:
+    - "^[A-Z]{2}-\\d{4}-\\d{6}$"      # Format: AH-2024-001234
+    - "^\\d{8,10}$"                    # Format: 12345678 (8-10 digits)
+    - "^[A-Z0-9]{10,}$"                # Format: alphanumeric, 10+ chars
+  
+  # Directory naming patterns (for file organization)
+  directory_patterns:
+    - "[PolicyNumber]_[InsuredName]"   # Format: AH-2024-001234_Acme_Corp
+    - "[PolicyNumber]-[InsuredName]"   # Format: AH-2024-001234-Acme Corp
+    - "[PolicyNumber] [InsuredName]"   # Format: AH-2024-001234 Acme Corp
+  
+  # File extensions to include in scan
+  file_extensions:
+    - ".pdf"
+    - ".docx"
+    - ".xlsx"
+    - ".tif"
+    - ".tiff"
+    - ".jpg"
+    - ".jpeg"
+    - ".png"
+  
+  # Exclude patterns (files/folders to skip)
+  exclude_patterns:
+    - "~*"
+    - ".*"
+    - "*backup*"
+    - "*archive*"
+
+# Similarity matching for file matching
+similarity:
+  # Minimum similarity score (0.0 to 1.0)
+  min_threshold: 0.75
+  
+  # Matching algorithm
+  algorithm: "levenshtein"
+  
+  # Weight factors for different match types
+  weights:
+    policy_number_exact: 1.0
+    policy_number_partial: 0.9
+    directory_match: 0.85
+    name_similarity: 0.75
+
+# File size configuration
+file_limits:
+  # Maximum file size to process (bytes)
+  max_file_size: 104857600  # 100 MB
+  
+  # Skip files matching these patterns
+  skip_patterns:
+    - "Thumbs.db"
+    - ".DS_Store"

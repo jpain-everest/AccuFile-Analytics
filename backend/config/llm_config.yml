@@ -1,0 +1,38 @@
+# LLM Configuration
+llm:
+  provider: "openai"  # Options: openai, azure_openai, anthropic
+  model: "gpt-4"
+  temperature: 0.3
+  max_tokens: 2000
+  
+  # Feature flags
+  enable_document_analysis: true
+  enable_smart_matching: true
+  enable_validation_insights: true
+  enable_report_generation: true
+  
+  # Tool/Function calling
+  enable_tools: true
+  
+  # Prompts
+  prompts:
+    document_analysis: |
+      You are an expert underwriting file analyst. Analyze the provided policy documents and identify:
+      1. Missing critical information
+      2. Compliance issues
+      3. Risk factors
+      4. Recommendations for improvement
+      
+    smart_matching: |
+      You are an expert at matching insurance policy records to file names. 
+      Use fuzzy logic and domain knowledge to determine if files match policies.
+      
+    validation_insights: |
+      You are an expert compliance officer. Review the validation results and provide:
+      1. Root cause analysis of issues
+      2. Remediation recommendations
+      3. Risk assessment
+      
+    report_summary: |
+      You are an expert report writer. Create a concise executive summary of the file review findings.
+      Highlight key risks, trends, and actionable recommendations.

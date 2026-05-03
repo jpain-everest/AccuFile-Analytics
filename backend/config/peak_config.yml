@@ -1,0 +1,40 @@
+# Peak Insurance System Configuration
+# This file defines connection settings and query parameters for the Peak system
+
+# API Endpoint
+endpoint: "https://peak-api.example.com"
+api_version: "v1"
+
+# Local data file for testing (relative to backend/)
+data_file: "data/peak_policies.json"
+
+# Connection timeout (seconds)
+timeout: 30
+
+# Credentials (should be set via environment variables)
+credentials:
+  username: ""  # Set via PEAK_USERNAME environment variable
+  password: ""  # Set via PEAK_PASSWORD environment variable
+  
+# Query parameters
+query:
+  # Include policies from this many days back
+  days_back: 90
+  
+  # Policy statuses to include
+  statuses:
+    - "active"
+    - "pending"
+    - "issued"
+  
+  # Policy types to include (empty list = all types)
+  policy_types: []
+  
+  # Maximum records per request
+  page_size: 1000
+
+# Retry configuration
+retry:
+  max_attempts: 3
+  backoff_factor: 2
+  timeout_seconds: 30

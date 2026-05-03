@@ -1,0 +1,168 @@
+# Reporting Configuration
+# Defines report generation, distribution, and archival settings
+
+# Output paths
+output_path: "reports/"
+archive_path: "reports/archive"
+
+# Report types to generate
+report_formats:
+  - type: "json"
+    description: "Detailed JSON report with all data"
+    filename: "accufile_report_{timestamp}.json"
+    enabled: true
+    
+  - type: "summary"
+    description: "Executive summary with key metrics"
+    filename: "accufile_summary_{timestamp}.txt"
+    enabled: true
+    
+  - type: "issues"
+    description: "Detailed issues and action items"
+    filename: "accufile_issues_{timestamp}.txt"
+    enabled: true
+    
+  - type: "excel"
+    description: "Spreadsheet with detailed data"
+    filename: "accufile_report_{timestamp}.xlsx"
+    enabled: false  # Enable when Excel support is added
+
+# Email distribution configuration
+email:
+  # Enable email sending
+  enabled: false
+  
+  # SMTP configuration
+  smtp_server: "smtp.office365.com"
+  smtp_port: 587
+  smtp_use_tls: true
+  smtp_timeout: 30
+  
+  # Sender address
+  sender: "accufile@example.com"
+  
+  # Default recipients (can be overridden by role-based recipients)
+  recipients: []
+  
+  # Email subject template
+  subject: "A&H AccuFile Daily Report - {date}"
+  
+  # Reports to attach to email
+  include_reports:
+    - "summary"
+    - "issues"
+  
+  # Include execution summary in email body
+  include_summary: true
+
+# Azure Blob Storage archival
+azure_archive:
+  # Enable archival to Azure
+  enabled: false
+  
+  # Storage account name
+  account: ""  # Set via AZURE_STORAGE_ACCOUNT environment variable
+  
+  # Connection string (alternative to account + key)
+  connection_string: ""  # Set via AZURE_STORAGE_CONNECTION_STRING
+  
+  # Container name
+  container: "accufile-reports"
+  
+  # Retention period (days)
+  retention_days: 30
+  
+  # Archive path structure
+  archive_path: "reports/{year}/{month}/{day}/"
+
+# Report alert thresholds
+thresholds:
+  # Alert if missing file rate exceeds this percentage
+  alert_missing_rate: 0.15      # 15%
+  
+  # Alert if non-compliant file rate exceeds this percentage
+  alert_fail_rate: 0.50         # 50%
+  
+  # Alert on any workflow execution error
+  alert_on_error: true
+  
+  # Alert if workflow exceeds this duration (minutes)
+  alert_max_duration: 240       # 4 hours
+
+# Role-based report distribution
+recipients:
+  operations_lead:
+    name: "Operations Lead"
+    email: ""  # Set via OPERATIONS_LEAD_EMAIL environment variable
+    
+    # Reports to send
+    reports:
+      - "summary"
+      - "issues"
+    
+    # Distribution frequency
+    frequency: "daily"  # Options: daily, weekly, monthly
+    
+    # Include detailed findings
+    include_details: true
+  
+  management:
+    name: "Management"
+    email: ""  # Set via MANAGEMENT_EMAIL environment variable
+    
+    reports:
+      - "summary"
+    
+    frequency: "weekly"
+    include_details: false
+  
+  technical:
+    name: "Technical Team"
+    email: ""  # Set via TECHNICAL_EMAIL environment variable
+    
+    reports:
+      - "json"
+    
+    frequency: "daily"
+    include_details: true
+
+# Report content configuration
+content:
+  # Include detailed statistics
+  include_statistics: true
+  
+  # Include trend analysis
+  include_trends: true
+  
+  # Include recommendations
+  include_recommendations: true
+  
+  # Maximum items to list in issues report
+  max_items_per_section: 20
+  
+  # Include sample of compliant files
+  include_compliant_samples: false
+
+# Dashboard configuration (future)
+dashboard:
+  enabled: false
+  
+  # Dashboard URL
+  url: "https://accufile.example.com/dashboard"
+  
+  # Auto-refresh interval (seconds)
+  refresh_interval: 300
+
+# Performance tuning
+performance:
+  # Number of parallel report generation workers
+  parallel_workers: 2
+  
+  # Buffer size for file operations
+  buffer_size: 8192
+  
+  # Enable report caching
+  cache_reports: true
+  
+  # Cache duration (hours)
+  cache_duration: 24

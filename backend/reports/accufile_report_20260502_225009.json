@@ -1,0 +1,12 @@
+{
+  "timestamp": "2026-05-02T22:50:09.423955",
+  "summary": {
+    "total_policies": 0,
+    "matched_files": 0,
+    "missing_files": 0,
+    "match_rate": 0
+  },
+  "matched_files": [],
+  "missing_files": [],
+  "validation_results": {}
+}
