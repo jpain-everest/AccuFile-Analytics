@@ -12,18 +12,17 @@ const Dashboard = ({ summary, issues, logs, policyRiskScores, llmInsights, valid
                 <Col md={12}>
                     <div className="dashboard-header">
                         <h1 className="dashboard-title">
-                            <span className="title-icon">📊</span>
-                            AccuFile Analytics & Governance
+                            ACCUFILE ANALYTICS
                         </h1>
-                        <p className="dashboard-subtitle">Underwriting File Review & Compliance Management</p>
+                        <p className="dashboard-subtitle">Underwriting Intelligence & Governance Framework</p>
                     </div>
                 </Col>
             </Row>
             <Row className="mb-4">
-                <Col lg={6} className="mb-3">
+                <Col lg={6} className="mb-4">
                     <Summary summary={summary} />
                 </Col>
-                <Col lg={6} className="mb-3">
+                <Col lg={6} className="mb-4">
                     <Issues issues={issues} />
                 </Col>
             </Row>
@@ -40,13 +39,11 @@ const Dashboard = ({ summary, issues, logs, policyRiskScores, llmInsights, valid
             <Row>
                 <Col md={12}>
                     <div className="logs-section">
-                        <h3 className="section-title">
-                            <span className="title-icon">📋</span>
-                            Processing Logs
-                            {logs && <Badge bg="secondary" className="ms-2">Live</Badge>}
+                        <h3 className="card-header-custom mb-3">
+                            SYSTEM PROCESSING LOGS
                         </h3>
                         <div className="log-container">
-                            <pre className="log-output"><code>{logs || 'No logs available. Click "Run File Review" to start the workflow.'}</code></pre>
+                            <pre className="log-output"><code>{logs || 'Ready for review. Click "RUN FILE REVIEW" to begin processing.'}</code></pre>
                         </div>
                     </div>
                 </Col>

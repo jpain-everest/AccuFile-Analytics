@@ -38,10 +38,11 @@ const PolicyRiskDetail = ({ policy, show, onHide, validationData }) => {
             <Modal.Header closeButton className="policy-detail-header">
                 <Modal.Title>
                     <div className="d-flex align-items-center gap-3">
-                        <span className="detail-icon">📋</span>
                         <div>
                             <div className="policy-number-title">{policy.policy_number}</div>
-                            <small className="text-white-50">Risk Assessment Details</small>
+                            <small className="text-white-50 text-uppercase" style={{ fontSize: '0.6rem', letterSpacing: '1px' }}>
+                                Risk Intelligence Report
+                            </small>
                         </div>
                     </div>
                 </Modal.Title>
@@ -86,9 +87,9 @@ const PolicyRiskDetail = ({ policy, show, onHide, validationData }) => {
 
                 {/* Missing Documents */}
                 {policy.missing_documents && policy.missing_documents.length > 0 && (
-                    <Card className="mb-4 border-danger">
-                        <Card.Header className="bg-danger text-white">
-                            <strong>⚠️ Missing Required Documents ({policy.missing_documents.length})</strong>
+                    <Card className="mb-4" style={{ borderColor: '#D31245' }}>
+                        <Card.Header className="text-white" style={{ backgroundColor: '#D31245', borderRadius: 0 }}>
+                            MISSING REQUIRED DOCUMENTATION ({policy.missing_documents.length})
                         </Card.Header>
                         <ListGroup variant="flush">
                             {policy.missing_documents.map((doc, idx) => (
@@ -124,12 +125,9 @@ const PolicyRiskDetail = ({ policy, show, onHide, validationData }) => {
 
                 {/* LLM AI Insights */}
                 {hasLLMInsights && (
-                    <Card className="mb-4 border-0" style={{ background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)' }}>
-                        <Card.Header className="bg-transparent border-0">
-                            <strong>🤖 AI-Powered Insights</strong>
-                            <Badge bg={llmAnalysis.mode === 'live' ? 'success' : 'info'} className="ms-2">
-                                {llmAnalysis.mode === 'live' ? 'Live AI' : 'Simulated'}
-                            </Badge>
+                    <Card className="mb-4 border-0">
+                        <Card.Header className="card-header-custom">
+                            AI-POWERED INSIGHTS
                         </Card.Header>
                         <Card.Body>
                             {llmAnalysis.insights && (

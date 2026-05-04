@@ -69,27 +69,16 @@ const FileTree = ({ fileStructure, onFileSelect }) => {
 
     const getStatusIcon = (status) => {
         switch (status) {
-            case 'compliant': return '✓';
-            case 'issues': return '⚠';
-            case 'missing': return '✗';
-            case 'critical': return '🔴';
-            default: return '📄';
+            case 'compliant': return '→';
+            case 'issues': return '!';
+            case 'missing': return '×';
+            case 'critical': return '!!';
+            default: return '→';
         }
     };
 
     const getFileIcon = (fileName) => {
-        const ext = fileName.toLowerCase().split('.').pop();
-        switch (ext) {
-            case 'pdf': return '📄';
-            case 'doc':
-            case 'docx': return '📝';
-            case 'xls':
-            case 'xlsx': return '📊';
-            case 'jpg':
-            case 'jpeg':
-            case 'png': return '🖼️';
-            default: return '📎';
-        }
+        return '→';
     };
 
     const formatFileSize = (bytes) => {
@@ -137,9 +126,8 @@ const FileTree = ({ fileStructure, onFileSelect }) => {
                             onClick={() => togglePolicy(policy.policy_number)}
                         >
                             <span className="expand-icon">
-                                {expandedPolicies.has(policy.policy_number) ? '▼' : '▶'}
+                                {expandedPolicies.has(policy.policy_number) ? '−' : '+'}
                             </span>
-                            <span className="policy-icon">📁</span>
                             <span className="policy-name">{policy.policy_number}</span>
                             {policy.status && getStatusBadge(policy.status, policy.file_count || 0)}
                         </div>

@@ -4,10 +4,9 @@ import { Card, Table, Badge } from 'react-bootstrap';
 const Issues = ({ issues }) => {
     if (!issues || issues.length === 0) {
         return (
-            <Card className="issues-card shadow-sm">
+            <Card className="issues-card">
                 <Card.Header className="card-header-custom">
-                    <span className="header-icon">⚠️</span>
-                    <strong>Issues Report</strong>
+                    CRITICAL ISSUES REPORT
                 </Card.Header>
                 <Card.Body className="text-center py-5">
                     <div className="empty-state">
@@ -21,11 +20,9 @@ const Issues = ({ issues }) => {
     }
 
     return (
-        <Card className="issues-card shadow-sm">
+        <Card className="issues-card">
             <Card.Header className="card-header-custom">
-                <span className="header-icon">⚠️</span>
-                <strong>Issues Report</strong>
-                <Badge bg="danger" className="ms-2">{issues.length}</Badge>
+                CRITICAL ISSUES REPORT
             </Card.Header>
             <Card.Body>
                 <div className="table-responsive" style={{ maxHeight: '400px', overflowY: 'auto' }}>

@@ -1,51 +1,61 @@
 .sidebar {
-    background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
-    border-right: 2px solid #e0e0e0;
+    background-color: var(--everest-light);
+    border-right: 1px solid var(--everest-gray-medium);
     height: 100vh;
-    padding: 20px 15px;
-    box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+    padding: 30px 20px;
     display: flex;
     flex-direction: column;
 }
 
 .sidebar-header h6 {
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    margin-bottom: 10px;
-    font-size: 0.75rem;
+    font-family: var(--font-primary);
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+    font-size: 0.7rem;
+    color: var(--everest-gray-dark);
 }
 
-.sidebar .nav-link {
-    color: #495057;
-    font-weight: 500;
-    cursor: pointer;
-    padding: 12px 15px;
-    border-radius: 8px;
+.sidebar .btn {
+    border-radius: 0 !important;
+    padding: 15px;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    border: none;
     transition: all 0.2s ease;
-    margin-bottom: 5px;
-}
-
-.sidebar .nav-link:hover {
-    color: #0056b3;
-    background-color: #e7f1ff;
-    transform: translateX(3px);
 }
 
 .sidebar .btn-primary {
-    font-weight: 500;
-    padding: 8px 12px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,123,255,0.2);
-    transition: all 0.2s ease;
+    background-color: var(--everest-blue);
 }
 
 .sidebar .btn-primary:hover {
-    box-shadow: 0 4px 8px rgba(0,123,255,0.3);
-    transform: translateY(-1px);
+    background-color: var(--everest-dark);
 }
 
-.sidebar-footer {
-    color: #6c757d;
-    font-size: 0.75rem;
-    padding-top: 15px;
+.sidebar-nav-link {
+    font-family: var(--font-primary);
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: var(--everest-gray-dark) !important;
+    padding: 12px 15px !important;
+    border-left: 3px solid transparent;
+    transition: all 0.2s ease;
+    letter-spacing: 1px;
+}
+
+.sidebar-nav-link:hover {
+    background-color: var(--everest-gray-light);
+    color: var(--everest-blue) !important;
+}
+
+.sidebar-nav-link.active {
+    background-color: var(--everest-gray-medium);
+    color: var(--everest-blue) !important;
+    border-left-color: var(--everest-blue);
+    font-weight: 700;
+}
+
+.sidebar-section {
+    margin-top: 30px;
 }

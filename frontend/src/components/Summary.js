@@ -4,10 +4,9 @@ import { Card, Table, Badge, ProgressBar } from 'react-bootstrap';
 const Summary = ({ summary }) => {
     if (!summary || Object.keys(summary).length === 0) {
         return (
-            <Card className="summary-card shadow-sm">
+            <Card className="summary-card">
                 <Card.Header className="card-header-custom">
-                    <span className="header-icon">📈</span>
-                    <strong>Summary Report</strong>
+                    METRIC SUMMARY REPORT
                 </Card.Header>
                 <Card.Body className="text-center py-5">
                     <div className="empty-state">
@@ -27,11 +26,9 @@ const Summary = ({ summary }) => {
     const avgRiskScore = summary.average_risk_score || 0;
 
     return (
-        <Card className="summary-card shadow-sm">
+        <Card className="summary-card">
             <Card.Header className="card-header-custom">
-                <span className="header-icon">📈</span>
-                <strong>Summary Report</strong>
-                <Badge bg="success" className="ms-2">Updated</Badge>
+                METRIC SUMMARY REPORT
             </Card.Header>
             <Card.Body>
                 <div className="metric-grid mb-3">
@@ -48,7 +45,7 @@ const Summary = ({ summary }) => {
                         <div className="metric-label">Missing Files</div>
                     </div>
                 </div>
-                
+
                 <div className="mb-3">
                     <div className="d-flex justify-content-between align-items-center mb-2">
                         <span className="metric-label">Match Rate</span>
@@ -56,13 +53,13 @@ const Summary = ({ summary }) => {
                             {matchRate.toFixed(1)}%
                         </Badge>
                     </div>
-                    <ProgressBar 
-                        now={matchRate} 
+                    <ProgressBar
+                        now={matchRate}
                         variant={matchRate >= 90 ? 'success' : matchRate >= 70 ? 'warning' : 'danger'}
                         className="custom-progress"
                     />
                 </div>
-                
+
                 <div className="mb-3">
                     <div className="d-flex justify-content-between align-items-center mb-2">
                         <span className="metric-label">Compliance Rate</span>
@@ -70,13 +67,13 @@ const Summary = ({ summary }) => {
                             {(100 - failureRate).toFixed(1)}%
                         </Badge>
                     </div>
-                    <ProgressBar 
-                        now={100 - failureRate} 
+                    <ProgressBar
+                        now={100 - failureRate}
                         variant={failureRate <= 10 ? 'success' : failureRate <= 30 ? 'warning' : 'danger'}
                         className="custom-progress"
                     />
                 </div>
-                
+
                 <div className="mb-3">
                     <div className="d-flex justify-content-between align-items-center mb-2">
                         <span className="metric-label">Average Risk Score</span>
@@ -84,8 +81,8 @@ const Summary = ({ summary }) => {
                             {avgRiskScore.toFixed(1)} / 100
                         </Badge>
                     </div>
-                    <ProgressBar 
-                        now={avgRiskScore} 
+                    <ProgressBar
+                        now={avgRiskScore}
                         variant={avgRiskScore >= 70 ? 'danger' : avgRiskScore >= 50 ? 'warning' : avgRiskScore >= 30 ? 'info' : 'success'}
                         className="custom-progress"
                     />

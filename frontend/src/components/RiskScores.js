@@ -67,10 +67,9 @@ const RiskScores = ({ riskScores, validationResults }) => {
     };
     if (!riskScores || riskScores.length === 0) {
         return (
-            <Card className="risk-scores-card shadow-sm">
+            <Card className="risk-scores-card">
                 <Card.Header className="card-header-custom">
-                    <span className="header-icon">🎯</span>
-                    <strong>Risk Assessment</strong>
+                    POLICY RISK ASSESSMENT
                 </Card.Header>
                 <Card.Body className="text-center py-5">
                     <div className="empty-state">
@@ -107,11 +106,9 @@ const RiskScores = ({ riskScores, validationResults }) => {
     };
 
     return (
-        <Card className="risk-scores-card shadow-sm">
+        <Card className="risk-scores-card">
             <Card.Header className="card-header-custom">
-                <span className="header-icon">🎯</span>
-                <strong>Policy Risk Assessment</strong>
-                <Badge bg="primary" className="ms-2">{riskScores.length} Policies</Badge>
+                POLICY RISK ASSESSMENT
             </Card.Header>
             <Card.Body>
                 <div className="mb-3 p-3 bg-light rounded">
@@ -129,23 +126,23 @@ const RiskScores = ({ riskScores, validationResults }) => {
                     />
                 </div>
 
-                <div className="mb-3 p-2 bg-white border rounded d-flex justify-content-between align-items-center">
-                    <span className="text-muted">
+                <div className="mb-4 p-3 bg-white border d-flex justify-content-between align-items-center">
+                    <span className="text-uppercase" style={{ fontSize: '0.7rem', fontWeight: 700, letterSpacing: '1px' }}>
                         {selectedPolicies.size > 0 ? (
                             <><strong>{selectedPolicies.size}</strong> {selectedPolicies.size === 1 ? 'policy' : 'policies'} selected</>
                         ) : (
-                            <span>Select policies to perform actions</span>
+                            <span>Select policies for batch operations</span>
                         )}
                     </span>
                     <div className="d-flex gap-2">
-                        <Button variant="success" size="sm" onClick={handleDMSReady}>
-                            <span className="me-1">✓</span> DMS Ready
+                        <Button variant="primary" size="sm" onClick={handleDMSReady}>
+                            DMS READY
                         </Button>
-                        <Button variant="warning" size="sm" onClick={handleFixNow}>
-                            <span className="me-1">🔧</span> Fix Now
+                        <Button variant="outline-primary" size="sm" onClick={handleFixNow}>
+                            FIX NOW
                         </Button>
-                        <Button variant="info" size="sm" onClick={handleManualReview}>
-                            <span className="me-1">👁</span> Manual Review
+                        <Button variant="dark" size="sm" onClick={handleManualReview}>
+                            MANUAL REVIEW
                         </Button>
                     </div>
                 </div>
