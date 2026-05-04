@@ -8,12 +8,12 @@ const ExplorerPage = ({
 }) => {
     return (
         <div className="explorer-page page-container">
-            <div className="dashboard-header mb-4">
+            <div className="dashboard-header mb-2">
                 <p className="dashboard-subtitle">Deep-Dive Risk Assessment & AI Intelligence</p>
             </div>
 
-            <Row className="mb-4">
-                <Col lg={12} className="mb-4">
+            <Row className="mb-2">
+                <Col lg={12} className="mb-2">
                     <Card className="explorer-panel-card">
                         <Card.Body className="p-0">
                             <FileTree fileStructure={fileStructure} onFileSelect={onFileSelect} />
