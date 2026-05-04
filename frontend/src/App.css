@@ -906,3 +906,33 @@
 .subfolder-files .file-item {
   padding-left: 60px;
 }
+
+/* Dashboard Tabs Styles */
+#dashboard-tabs {
+  border-bottom: 2px solid #e9ecef;
+}
+
+#dashboard-tabs .nav-link {
+  color: #6c757d;
+  font-weight: 600;
+  padding: 12px 24px;
+  border: none;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+}
+
+#dashboard-tabs .nav-link:hover {
+  color: #0d6efd;
+  border-bottom-color: #0d6efd;
+  background: transparent;
+}
+
+#dashboard-tabs .nav-link.active {
+  color: #0d6efd;
+  background: transparent;
+  border-bottom-color: #0d6efd;
+}
+
+.tab-content {
+  padding-top: 20px;
+}

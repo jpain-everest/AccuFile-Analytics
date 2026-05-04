@@ -110,7 +110,7 @@ const RiskScores = ({ riskScores, validationResults }) => {
         <Card className="risk-scores-card shadow-sm">
             <Card.Header className="card-header-custom">
                 <span className="header-icon">🎯</span>
-                <strong>Policy Risk Assessment</strong>
+                <strong>Document Compliance Risk Assessment</strong>
                 <Badge bg="primary" className="ms-2">{riskScores.length} Policies</Badge>
             </Card.Header>
             <Card.Body>
