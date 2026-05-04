@@ -12,16 +12,14 @@ const DashboardPage = ({ summary, issues, llmInsights }) => {
             </div>
             
             <Row className="mb-4">
-                <Col lg={12} className="mb-4">
+                <Col lg={6} className="mb-4">
                     <Summary summary={summary} />
+                </Col>
+                <Col lg={6} className="mb-4">
+                    <LLMInsights llmInsights={llmInsights} />
                 </Col>
                 <Col lg={12} className="mb-4">
                     <Issues issues={issues} />
-                </Col>
-            </Row>
-            <Row className="mb-4">
-                <Col lg={12}>
-                    <LLMInsights llmInsights={llmInsights} />
                 </Col>
             </Row>
         </div>

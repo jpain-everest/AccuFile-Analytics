@@ -177,7 +177,7 @@
 /* Metrics */
 .metric-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1px;
   background-color: var(--everest-gray-medium);
   border: 1px solid var(--everest-gray-medium);
@@ -185,12 +185,12 @@
 
 .metric-item {
   background-color: var(--everest-light);
-  padding: 30px;
+  padding: 15px 20px;
   text-align: left;
 }
 
 .metric-value {
-  font-size: 2.5rem;
+  font-size: 1.75rem;
   font-weight: 700;
   color: var(--everest-blue);
   margin-bottom: 5px;
