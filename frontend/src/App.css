@@ -156,6 +156,24 @@
   font-size: 1.2rem;
 }
 
+.card-header-centered {
+  background-color: var(--everest-light);
+  border-bottom: 1px solid var(--everest-gray-medium);
+  padding: 20px 24px;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-header-centered::before {
+  display: none;
+}
+
 /* Metrics */
 .metric-grid {
   display: grid;

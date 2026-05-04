@@ -5,8 +5,8 @@ const Summary = ({ summary }) => {
     if (!summary || Object.keys(summary).length === 0) {
         return (
             <Card className="summary-card">
-                <Card.Header className="card-header-custom">
-                    METRIC SUMMARY REPORT
+                <Card.Header className="card-header-centered">
+                    Summary
                 </Card.Header>
                 <Card.Body className="text-center py-5">
                     <div className="empty-state">
@@ -27,8 +27,8 @@ const Summary = ({ summary }) => {
 
     return (
         <Card className="summary-card">
-            <Card.Header className="card-header-custom">
-                METRIC SUMMARY REPORT
+            <Card.Header className="card-header-centered">
+                Summary
             </Card.Header>
             <Card.Body>
                 <div className="metric-grid mb-3">
