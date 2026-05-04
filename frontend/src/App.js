@@ -1,9 +1,11 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import axios from 'axios';
-import { Container, Row, Col, Spinner } from 'react-bootstrap';
+import { Container, Spinner } from 'react-bootstrap';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header';
-import Sidebar from './components/Sidebar';
-import Dashboard from './components/Dashboard';
+import DashboardPage from './pages/DashboardPage';
+import RiskAssessmentPage from './pages/RiskAssessmentPage';
+import ExplorerPage from './pages/ExplorerPage';
 import './App.css';
 import './components/Sidebar.css';
 
@@ -14,20 +16,12 @@ function App() {
     const [llmInsights, setLlmInsights] = useState(null);
     const [validationResults, setValidationResults] = useState(null);
     const [fileStructure, setFileStructure] = useState([]);
-    const [selectedFile, setSelectedFile] = useState(null);
     const [logs, setLogs] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
     const handleFileSelect = useCallback((policyNumber, file) => {
-        setSelectedFile({ policyNumber, file });
-        console.log('Selected file:', policyNumber, file);
-        
-        // Open the file in a new tab
-        const fileName = file.displayName || file.name;
-        const filePath = file.name; // This contains the relative path with forward slashes
-        const fileUrl = `http://localhost:5000/api/files/${policyNumber}/${filePath}`;
-        
+        const fileUrl = `http://localhost:8001/api/files/${policyNumber}/${file.name}`;
         window.open(fileUrl, '_blank');
     }, []);
 
@@ -55,40 +49,55 @@ function App() {
         }
     }, []);
 
+    useEffect(() => {
+        handleRunWorkflow();
+    }, [handleRunWorkflow]);
+
     return (
-        <div className="App">
-            <Header />
-            <Container fluid>
-                <Row>
-                    <Col md={3} className="sidebar-wrapper">
-                        <Sidebar 
-                            onRunWorkflow={handleRunWorkflow} 
-                            fileStructure={fileStructure}
-                            onFileSelect={handleFileSelect}
-                        />
-                    </Col>
-                    <Col md={9} className="main-content">
+        <Router>
+            <div className="App">
+                <Header />
+                <Container fluid className="p-0">
+                    <main className="main-content full-width">
                         {loading && (
-                            <div className="text-center">
-                                <Spinner animation="border" role="status">
-                                    <span className="visually-hidden">Loading...</span>
-                                </Spinner>
-                                <p>Processing... this may take a moment.</p>
+                            <div className="text-center py-5">
+                                <Spinner animation="border" variant="primary" />
+                                <p className="mt-3 text-uppercase fw-bold" style={{ letterSpacing: '1px' }}>
+                                    Analyzing Files...
+                                </p>
                             </div>
                         )}
-                        {error && <div className="alert alert-danger">{error}</div>}
-                        <Dashboard 
-                            summary={summary} 
-                            issues={issues} 
-                            logs={logs} 
-                            policyRiskScores={policyRiskScores} 
-                            llmInsights={llmInsights}
-                            validationResults={validationResults}
-                        />
-                    </Col>
-                </Row>
-            </Container>
-        </div>
+                        {error && <Container><div className="alert alert-danger my-4">{error}</div></Container>}
+                        
+                        <Routes>
+                            <Route 
+                                path="/" 
+                                element={<DashboardPage summary={summary} issues={issues} llmInsights={llmInsights} />} 
+                            />
+                            <Route 
+                                path="/risk-assessment" 
+                                element={
+                                    <RiskAssessmentPage 
+                                        policyRiskScores={policyRiskScores} 
+                                        validationResults={validationResults}
+                                    />
+                                } 
+                            />
+                            <Route 
+                                path="/explorer" 
+                                element={
+                                    <ExplorerPage 
+                                        fileStructure={fileStructure}
+                                        onFileSelect={handleFileSelect}
+                                    />
+                                } 
+                            />
+                            <Route path="*" element={<Navigate to="/" replace />} />
+                        </Routes>
+                    </main>
+                </Container>
+            </div>
+        </Router>
     );
 }
 

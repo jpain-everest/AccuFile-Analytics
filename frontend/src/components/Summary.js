@@ -1,13 +1,12 @@
 import React from 'react';
-import { Card, Table, Badge, ProgressBar } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 
 const Summary = ({ summary }) => {
     if (!summary || Object.keys(summary).length === 0) {
         return (
-            <Card className="summary-card shadow-sm">
-                <Card.Header className="card-header-custom">
-                    <span className="header-icon">📈</span>
-                    <strong>Summary Report</strong>
+            <Card className="summary-card dashboard-panel-fixed-height">
+                <Card.Header className="card-header-centered">
+                    Summary
                 </Card.Header>
                 <Card.Body className="text-center py-5">
                     <div className="empty-state">
@@ -27,14 +26,12 @@ const Summary = ({ summary }) => {
     const avgRiskScore = summary.average_risk_score || 0;
 
     return (
-        <Card className="summary-card shadow-sm">
-            <Card.Header className="card-header-custom">
-                <span className="header-icon">📈</span>
-                <strong>Summary Report</strong>
-                <Badge bg="success" className="ms-2">Updated</Badge>
+        <Card className="summary-card dashboard-panel-fixed-height">
+            <Card.Header className="card-header-centered">
+                Summary
             </Card.Header>
             <Card.Body>
-                <div className="metric-grid mb-3">
+                <div className="metric-grid">
                     <div className="metric-item">
                         <div className="metric-value text-primary">{totalPolicies}</div>
                         <div className="metric-label">Total Policies</div>
@@ -47,62 +44,33 @@ const Summary = ({ summary }) => {
                         <div className="metric-value text-danger">{missingFiles}</div>
                         <div className="metric-label">Missing Files</div>
                     </div>
-                </div>
-                
-                <div className="mb-3">
-                    <div className="d-flex justify-content-between align-items-center mb-2">
-                        <span className="metric-label">Match Rate</span>
-                        <Badge bg={matchRate >= 90 ? 'success' : matchRate >= 70 ? 'warning' : 'danger'}>
+                    <div className="metric-item">
+                        <div className="metric-value text-info">{summary.files_validated || 0}</div>
+                        <div className="metric-label">Files Validated</div>
+                    </div>
+                    <div className="metric-item">
+                        <div className="metric-value text-danger">{summary.validation_failures || 0}</div>
+                        <div className="metric-label">Validation Failures</div>
+                    </div>
+                    <div className="metric-item">
+                        <div className="metric-value" style={{ color: matchRate >= 90 ? '#2E7D32' : matchRate >= 70 ? '#E65100' : '#D31245' }}>
                             {matchRate.toFixed(1)}%
-                        </Badge>
+                        </div>
+                        <div className="metric-label">Match Rate</div>
                     </div>
-                    <ProgressBar 
-                        now={matchRate} 
-                        variant={matchRate >= 90 ? 'success' : matchRate >= 70 ? 'warning' : 'danger'}
-                        className="custom-progress"
-                    />
-                </div>
-                
-                <div className="mb-3">
-                    <div className="d-flex justify-content-between align-items-center mb-2">
-                        <span className="metric-label">Compliance Rate</span>
-                        <Badge bg={failureRate <= 10 ? 'success' : failureRate <= 30 ? 'warning' : 'danger'}>
+                    <div className="metric-item">
+                        <div className="metric-value" style={{ color: failureRate <= 10 ? '#2E7D32' : failureRate <= 30 ? '#E65100' : '#D31245' }}>
                             {(100 - failureRate).toFixed(1)}%
-                        </Badge>
+                        </div>
+                        <div className="metric-label">Compliance Rate</div>
                     </div>
-                    <ProgressBar 
-                        now={100 - failureRate} 
-                        variant={failureRate <= 10 ? 'success' : failureRate <= 30 ? 'warning' : 'danger'}
-                        className="custom-progress"
-                    />
-                </div>
-                
-                <div className="mb-3">
-                    <div className="d-flex justify-content-between align-items-center mb-2">
-                        <span className="metric-label">Average Risk Score</span>
-                        <Badge bg={avgRiskScore >= 70 ? 'danger' : avgRiskScore >= 50 ? 'warning' : avgRiskScore >= 30 ? 'info' : 'success'}>
-                            {avgRiskScore.toFixed(1)} / 100
-                        </Badge>
+                    <div className="metric-item">
+                        <div className="metric-value" style={{ color: avgRiskScore >= 70 ? '#D31245' : avgRiskScore >= 50 ? '#E65100' : avgRiskScore >= 30 ? '#007CBA' : '#2E7D32' }}>
+                            {avgRiskScore.toFixed(0)}
+                        </div>
+                        <div className="metric-label">Avg Risk Score</div>
                     </div>
-                    <ProgressBar 
-                        now={avgRiskScore} 
-                        variant={avgRiskScore >= 70 ? 'danger' : avgRiskScore >= 50 ? 'warning' : avgRiskScore >= 30 ? 'info' : 'success'}
-                        className="custom-progress"
-                    />
                 </div>
-
-                <Table size="sm" className="metrics-table mt-3">
-                    <tbody>
-                        <tr>
-                            <td>Files Validated</td>
-                            <td className="text-end"><strong>{summary.files_validated || 0}</strong></td>
-                        </tr>
-                        <tr>
-                            <td>Validation Failures</td>
-                            <td className="text-end"><strong className="text-danger">{summary.validation_failures || 0}</strong></td>
-                        </tr>
-                    </tbody>
-                </Table>
             </Card.Body>
         </Card>
     );

@@ -121,8 +121,7 @@ async def get_file(policy_number: str, file_path: str):
 if __name__ == "__main__":
     uvicorn.run(
         "web_app:app",
-        host="0.0.0.0",
-        port=5000,
+        port=8001,
         reload=True,
         reload_dirs=[str(BACKEND_DIR)],
     )

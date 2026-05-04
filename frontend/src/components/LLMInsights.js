@@ -6,11 +6,9 @@ const LLMInsights = ({ llmInsights }) => {
 
     if (!llmInsights || Object.keys(llmInsights).length === 0) {
         return (
-            <Card className="llm-insights-card shadow-sm">
-                <Card.Header className="card-header-custom">
-                    <span className="header-icon">🤖</span>
-                    <strong>AI-Powered Insights</strong>
-                    <Badge bg="secondary" className="ms-2">Offline</Badge>
+            <Card className="llm-insights-card dashboard-panel-fixed-height">
+                <Card.Header className="card-header-centered">
+                    AI Insights
                 </Card.Header>
                 <Card.Body className="text-center py-4">
                     <div className="empty-state">
@@ -30,18 +28,9 @@ const LLMInsights = ({ llmInsights }) => {
     const trendAnalysis = llmInsights.trend_analysis || '';
 
     return (
-        <Card className="llm-insights-card shadow-sm">
-            <Card.Header className="card-header-custom">
-                <span className="header-icon">🤖</span>
-                <strong>AI-Powered Insights</strong>
-                <Badge bg={isLive ? 'success' : 'info'} className="ms-2">
-                    {isLive ? '🔴 Live' : '💡 Simulated'}
-                </Badge>
-                {status.provider && (
-                    <Badge bg="secondary" className="ms-2">
-                        {status.model || status.provider}
-                    </Badge>
-                )}
+        <Card className="llm-insights-card dashboard-panel-fixed-height">
+            <Card.Header className="card-header-centered">
+                AI Insights
             </Card.Header>
             <Card.Body>
                 {llmInsights.error && (
@@ -52,20 +41,11 @@ const LLMInsights = ({ llmInsights }) => {
 
                 {execSummary && (
                     <div className="review-summary-section mb-4">
-                        <div className="review-summary-header">
-                            <div className="header-content">
-                                <span className="summary-icon">📊</span>
-                                <h5 className="summary-title">Review Summary</h5>
-                            </div>
-                            <Badge bg={isLive ? 'success' : 'primary'} className="summary-badge">
-                                {isLive ? 'AI Generated' : 'AI Simulated'}
-                            </Badge>
-                        </div>
-                        <div className="review-summary-body">
+                        <div className="review-summary-body p-4">
                             {execSummary.split('\n\n').map((section, idx) => {
                                 const lines = section.split('\n');
                                 const isHeading = lines[0] && (lines[0].includes('SUMMARY') || lines[0].includes('Key Findings') || lines[0].includes('Recommendations'));
-                                
+
                                 if (isHeading) {
                                     return (
                                         <div key={idx} className="summary-section">
