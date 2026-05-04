@@ -13,6 +13,9 @@ const Header = () => {
                     <Nav.Link as={NavLink} to="/" end className="header-nav-link">
                         DASHBOARD
                     </Nav.Link>
+                    <Nav.Link as={NavLink} to="/risk-assessment" className="header-nav-link">
+                        RISK ASSESSMENT
+                    </Nav.Link>
                     <Nav.Link as={NavLink} to="/explorer" className="header-nav-link">
                         POLICY EXPLORER
                     </Nav.Link>

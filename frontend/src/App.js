@@ -4,6 +4,7 @@ import { Container, Spinner } from 'react-bootstrap';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import DashboardPage from './pages/DashboardPage';
+import RiskAssessmentPage from './pages/RiskAssessmentPage';
 import ExplorerPage from './pages/ExplorerPage';
 import './App.css';
 import './components/Sidebar.css';
@@ -71,16 +72,21 @@ function App() {
                         <Routes>
                             <Route 
                                 path="/" 
-                                element={<DashboardPage summary={summary} issues={issues} />} 
+                                element={<DashboardPage summary={summary} issues={issues} llmInsights={llmInsights} />} 
+                            />
+                            <Route 
+                                path="/risk-assessment" 
+                                element={
+                                    <RiskAssessmentPage 
+                                        policyRiskScores={policyRiskScores} 
+                                        validationResults={validationResults}
+                                    />
+                                } 
                             />
                             <Route 
                                 path="/explorer" 
                                 element={
                                     <ExplorerPage 
-                                        policyRiskScores={policyRiskScores} 
-                                        validationResults={validationResults}
-                                        llmInsights={llmInsights}
-                                        logs={logs}
                                         fileStructure={fileStructure}
                                         onFileSelect={handleFileSelect}
                                     />

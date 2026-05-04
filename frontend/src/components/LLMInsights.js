@@ -41,12 +41,7 @@ const LLMInsights = ({ llmInsights }) => {
 
                 {execSummary && (
                     <div className="review-summary-section mb-4">
-                        <div className="review-summary-header">
-                            <div className="header-content">
-                                <h5 className="summary-title">EXECUTIVE REVIEW SUMMARY</h5>
-                            </div>
-                        </div>
-                        <div className="review-summary-body">
+                        <div className="review-summary-body p-4">
                             {execSummary.split('\n\n').map((section, idx) => {
                                 const lines = section.split('\n');
                                 const isHeading = lines[0] && (lines[0].includes('SUMMARY') || lines[0].includes('Key Findings') || lines[0].includes('Recommendations'));

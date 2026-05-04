@@ -2,8 +2,9 @@ import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import Summary from '../components/Summary';
 import Issues from '../components/Issues';
+import LLMInsights from '../components/LLMInsights';
 
-const DashboardPage = ({ summary, issues }) => {
+const DashboardPage = ({ summary, issues, llmInsights }) => {
     return (
         <div className="dashboard-page page-container">
             <div className="dashboard-header mb-4">
@@ -16,6 +17,11 @@ const DashboardPage = ({ summary, issues }) => {
                 </Col>
                 <Col lg={6} className="mb-4">
                     <Issues issues={issues} />
+                </Col>
+            </Row>
+            <Row className="mb-4">
+                <Col lg={12}>
+                    <LLMInsights llmInsights={llmInsights} />
                 </Col>
             </Row>
         </div>
