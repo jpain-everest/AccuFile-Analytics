@@ -136,6 +136,30 @@
   border-color: var(--everest-blue);
 }
 
+.dashboard-panel-fixed-height {
+  height: 480px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-panel-fixed-height .card-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.dashboard-panel-fixed-height .card-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dashboard-panel-fixed-height .card-body::-webkit-scrollbar-thumb {
+  background: var(--everest-gray-medium);
+}
+
+.dashboard-panel-fixed-height .card-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
 .card-header-custom {
   background-color: var(--everest-light);
   border-bottom: 1px solid var(--everest-gray-medium);

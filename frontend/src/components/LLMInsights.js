@@ -6,7 +6,7 @@ const LLMInsights = ({ llmInsights }) => {
 
     if (!llmInsights || Object.keys(llmInsights).length === 0) {
         return (
-            <Card className="llm-insights-card">
+            <Card className="llm-insights-card dashboard-panel-fixed-height">
                 <Card.Header className="card-header-centered">
                     AI Insights
                 </Card.Header>
@@ -28,7 +28,7 @@ const LLMInsights = ({ llmInsights }) => {
     const trendAnalysis = llmInsights.trend_analysis || '';
 
     return (
-        <Card className="llm-insights-card">
+        <Card className="llm-insights-card dashboard-panel-fixed-height">
             <Card.Header className="card-header-centered">
                 AI Insights
             </Card.Header>

@@ -4,7 +4,7 @@ import { Card } from 'react-bootstrap';
 const Summary = ({ summary }) => {
     if (!summary || Object.keys(summary).length === 0) {
         return (
-            <Card className="summary-card">
+            <Card className="summary-card dashboard-panel-fixed-height">
                 <Card.Header className="card-header-centered">
                     Summary
                 </Card.Header>
@@ -26,7 +26,7 @@ const Summary = ({ summary }) => {
     const avgRiskScore = summary.average_risk_score || 0;
 
     return (
-        <Card className="summary-card">
+        <Card className="summary-card dashboard-panel-fixed-height">
             <Card.Header className="card-header-centered">
                 Summary
             </Card.Header>
