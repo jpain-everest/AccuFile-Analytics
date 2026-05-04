@@ -7,8 +7,8 @@ const LLMInsights = ({ llmInsights }) => {
     if (!llmInsights || Object.keys(llmInsights).length === 0) {
         return (
             <Card className="llm-insights-card">
-                <Card.Header className="card-header-custom">
-                    AI-POWERED INSIGHTS
+                <Card.Header className="card-header-centered">
+                    AI Insights
                 </Card.Header>
                 <Card.Body className="text-center py-4">
                     <div className="empty-state">
@@ -29,8 +29,8 @@ const LLMInsights = ({ llmInsights }) => {
 
     return (
         <Card className="llm-insights-card">
-            <Card.Header className="card-header-custom">
-                AI-POWERED INSIGHTS
+            <Card.Header className="card-header-centered">
+                AI Insights
             </Card.Header>
             <Card.Body>
                 {llmInsights.error && (

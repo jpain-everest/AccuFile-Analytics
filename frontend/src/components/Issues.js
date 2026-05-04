@@ -5,8 +5,8 @@ const Issues = ({ issues }) => {
     if (!issues || issues.length === 0) {
         return (
             <Card className="issues-card">
-                <Card.Header className="card-header-custom">
-                    CRITICAL ISSUES REPORT
+                <Card.Header className="card-header-centered">
+                    Critical Issues
                 </Card.Header>
                 <Card.Body className="text-center py-5">
                     <div className="empty-state">
@@ -21,8 +21,8 @@ const Issues = ({ issues }) => {
 
     return (
         <Card className="issues-card">
-            <Card.Header className="card-header-custom">
-                CRITICAL ISSUES REPORT
+            <Card.Header className="card-header-centered">
+                Critical Issues
             </Card.Header>
             <Card.Body>
                 <div className="table-responsive" style={{ maxHeight: '400px', overflowY: 'auto' }}>
