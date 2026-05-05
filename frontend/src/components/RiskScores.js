@@ -1,11 +1,27 @@
 import React, { useState } from 'react';
-import { Card, Table, Badge, ProgressBar, Button, ButtonGroup, Form } from 'react-bootstrap';
+import { Card, Table, Badge, ProgressBar, Button, ButtonGroup, Form, Modal, ListGroup, Accordion } from 'react-bootstrap';
 import PolicyRiskDetail from './PolicyRiskDetail';
 
 const RiskScores = ({ riskScores, validationResults }) => {
     const [selectedPolicy, setSelectedPolicy] = useState(null);
     const [showDetailModal, setShowDetailModal] = useState(false);
     const [selectedPolicies, setSelectedPolicies] = useState(new Set());
+    const [showSubmissionModal, setShowSubmissionModal] = useState(false);
+    const [selectedSubmission, setSelectedSubmission] = useState(null);
+
+    const handleSubmissionClick = (policy, index) => {
+        setSelectedSubmission({
+            ...policy,
+            submissionId: `SUB-2026-${String(1234 + index).padStart(6, '0')}`,
+            index: index
+        });
+        setShowSubmissionModal(true);
+    };
+
+    const handleCloseSubmissionModal = () => {
+        setShowSubmissionModal(false);
+        setSelectedSubmission(null);
+    };
 
     const handlePolicyClick = (policy) => {
         setSelectedPolicy(policy);
@@ -69,7 +85,7 @@ const RiskScores = ({ riskScores, validationResults }) => {
         return (
             <Card className="risk-scores-card">
                 <Card.Header className="card-header-custom">
-                    POLICY RISK ASSESSMENT
+                    SUBMISSION LIST
                 </Card.Header>
                 <Card.Body className="text-center py-5">
                     <div className="empty-state">
@@ -105,83 +121,74 @@ const RiskScores = ({ riskScores, validationResults }) => {
         return 'success';
     };
 
+    // Non-compliance types to display
+    const nonComplianceTypes = [
+        'Policy Document Missing',
+        'Invoice Missing',
+        'Quote Missing',
+        'Service Provider Missing'
+    ];
+
+    const getNonComplianceType = (policy, index) => {
+        // Determine non-compliance type based on policy data or cycle through types
+        if (policy.issues_count === 0) {
+            return 'None';
+        }
+        // Use risk level to determine type, or cycle based on index
+        if (policy.risk_level === 'Critical') {
+            return 'Policy Document Missing';
+        } else if (policy.risk_level === 'High') {
+            return 'Invoice Missing';
+        } else if (policy.risk_level === 'Medium') {
+            return 'Quote Missing';
+        } else {
+            return 'Service Provider Missing';
+        }
+    };
+
     return (
         <Card className="risk-scores-card">
             <Card.Header className="card-header-custom">
-                POLICY RISK ASSESSMENT
+                SUBMISSION LIST
             </Card.Header>
             <Card.Body>
-                <div className="mb-3 p-3 bg-light rounded">
-                    <div className="d-flex justify-content-between align-items-center mb-2">
-                        <span className="metric-label">Average Risk Score</span>
-                        <Badge bg={getRiskProgressVariant(avgRiskScore)} style={{ fontSize: '1rem', padding: '8px 12px' }}>
-                            {avgRiskScore.toFixed(1)} / 100
-                        </Badge>
-                    </div>
-                    <ProgressBar 
-                        now={avgRiskScore} 
-                        variant={getRiskProgressVariant(avgRiskScore)}
-                        className="custom-progress"
-                        style={{ height: '12px' }}
-                    />
-                </div>
-
-                <div className="mb-4 p-3 bg-white border d-flex justify-content-between align-items-center">
-                    <span className="text-uppercase" style={{ fontSize: '0.7rem', fontWeight: 700, letterSpacing: '1px' }}>
-                        {selectedPolicies.size > 0 ? (
-                            <><strong>{selectedPolicies.size}</strong> {selectedPolicies.size === 1 ? 'policy' : 'policies'} selected</>
-                        ) : (
-                            <span>Select policies for batch operations</span>
-                        )}
-                    </span>
-                    <div className="d-flex gap-2">
-                        <Button variant="primary" size="sm" onClick={handleDMSReady}>
-                            DMS READY
-                        </Button>
-                        <Button variant="outline-primary" size="sm" onClick={handleFixNow}>
-                            FIX NOW
-                        </Button>
-                        <Button variant="dark" size="sm" onClick={handleManualReview}>
-                            MANUAL REVIEW
-                        </Button>
-                    </div>
-                </div>
-
-                <div style={{ maxHeight: '450px', overflowY: 'auto', overflowX: 'hidden' }}>
-                    <Table hover size="sm" className="risk-table" style={{ tableLayout: 'fixed', width: '100%' }}>
+                <div style={{ maxHeight: '450px', overflowY: 'auto', overflowX: 'auto' }}>
+                    <Table hover size="sm" className="risk-table" style={{ minWidth: '1800px' }}>
                         <thead className="table-header-sticky">
                             <tr>
-                                <th style={{ width: '5%' }} className="text-center">
-                                    <Form.Check 
-                                        type="checkbox"
-                                        checked={selectedPolicies.size === riskScores.length}
-                                        onChange={handleSelectAll}
-                                        title="Select all"
-                                    />
-                                </th>
-                                <th style={{ width: '18%' }}>Policy</th>
-                                <th style={{ width: '12%' }} className="text-center">Status</th>
-                                <th style={{ width: '11%' }} className="text-center">Score</th>
-                                <th style={{ width: '13%' }} className="text-center">Level</th>
-                                <th style={{ width: '32%' }}>Risk Assessment</th>
-                                <th style={{ width: '9%' }} className="text-center">Issues</th>
+                                <th style={{ width: '12%' }}>Submission ID</th>
+                                <th style={{ width: '10%' }}>Policy</th>
+                                <th style={{ width: '8%' }} className="text-center">Policy Status</th>
+                                <th style={{ width: '10%' }}>UA Assigned</th>
+                                <th style={{ width: '12%' }}>Business Segment</th>
+                                <th style={{ width: '10%' }}>LOB</th>
+                                <th style={{ width: '14%' }}>Policyholder Name</th>
+                                <th style={{ width: '8%' }} className="text-center">Level</th>
+                                <th style={{ width: '10%' }}>Non-Compliance Type</th>
+                                <th style={{ width: '5%' }} className="text-center">Issues</th>
+                                <th style={{ width: '8%' }}>Policy Eff Date</th>
+                                <th style={{ width: '8%' }}>Policy Exp Date</th>
+                                <th style={{ width: '6%' }}>PH State</th>
+                                <th style={{ width: '10%' }}>Producer Name</th>
+                                <th style={{ width: '10%' }}>Producer Parent</th>
+                                <th style={{ width: '10%' }}>Service Provider</th>
+                                <th style={{ width: '8%' }} className="text-center">File Prep Status</th>
+                                <th style={{ width: '12%' }}>Comments</th>
                             </tr>
                         </thead>
                         <tbody>
                             {sortedPolicies.map((policy, index) => (
                                 <tr 
                                     key={index} 
-                                    className={`clickable-row ${policy.risk_score >= 70 ? 'table-danger-subtle' : policy.risk_score >= 50 ? 'table-warning-subtle' : ''}`}
-                                    onClick={() => handlePolicyClick(policy)}
+                                    className={policy.risk_score >= 70 ? 'table-danger-subtle' : policy.risk_score >= 50 ? 'table-warning-subtle' : ''}
+                                    onClick={() => handleSubmissionClick(policy, index)}
                                     style={{ cursor: 'pointer' }}
-                                    title="Click to view detailed risk assessment"
+                                    title="Click to view submission details"
                                 >
-                                    <td className="text-center" onClick={(e) => e.stopPropagation()}>
-                                        <Form.Check 
-                                            type="checkbox"
-                                            checked={selectedPolicies.has(policy.policy_number)}
-                                            onChange={(e) => handleCheckboxChange(policy.policy_number, e)}
-                                        />
+                                    <td style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                                        <Badge bg="dark" className="font-monospace" style={{ fontSize: '0.72rem' }}>
+                                            {`SUB-2026-${String(1234 + index).padStart(6, '0')}`}
+                                        </Badge>
                                     </td>
                                     <td style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                                         <Badge bg="secondary" className="font-monospace" style={{ fontSize: '0.72rem' }}>
@@ -196,10 +203,17 @@ const RiskScores = ({ riskScores, validationResults }) => {
                                             Active
                                         </Badge>
                                     </td>
-                                    <td className="text-center">
-                                        <strong className={`risk-score-value risk-${policy.risk_level.toLowerCase()}`} style={{ fontSize: '0.95rem' }}>
-                                            {policy.risk_score}
-                                        </strong>
+                                    <td style={{ fontSize: '0.75rem', color: '#58595B' }}>
+                                        {['John Smith', 'Mary Johnson', 'Robert Davis', 'Sarah Wilson', 'Michael Brown'][index % 5]}
+                                    </td>
+                                    <td style={{ fontSize: '0.75rem', color: '#58595B' }}>
+                                        {['Commercial', 'Personal Lines', 'Specialty', 'Healthcare', 'Financial'][index % 5]}
+                                    </td>
+                                    <td style={{ fontSize: '0.75rem', color: '#58595B' }}>
+                                        {['Auto', 'Property', 'GL', 'WC', 'Umbrella'][index % 5]}
+                                    </td>
+                                    <td style={{ fontSize: '0.75rem', color: '#58595B', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                                        {['Acme Corp', 'Tech Solutions Inc', 'Global Services LLC', 'Premier Holdings', 'Summit Industries'][index % 5]}
                                     </td>
                                     <td className="text-center">
                                         <Badge bg={getRiskBadgeVariant(policy.risk_level)} style={{ fontSize: '0.65rem', padding: '4px 8px' }}>
@@ -207,11 +221,9 @@ const RiskScores = ({ riskScores, validationResults }) => {
                                         </Badge>
                                     </td>
                                     <td style={{ padding: '8px 12px' }}>
-                                        <ProgressBar 
-                                            now={policy.risk_score} 
-                                            variant={getRiskProgressVariant(policy.risk_score)}
-                                            className="risk-progress-sm"
-                                        />
+                                        <span style={{ fontSize: '0.8rem', color: '#58595B' }}>
+                                            {getNonComplianceType(policy, index)}
+                                        </span>
                                     </td>
                                     <td className="text-center">
                                         {policy.issues_count > 0 ? (
@@ -219,6 +231,35 @@ const RiskScores = ({ riskScores, validationResults }) => {
                                         ) : (
                                             <Badge bg="success" pill style={{ fontSize: '0.7rem' }}>✓</Badge>
                                         )}
+                                    </td>
+                                    <td style={{ fontSize: '0.75rem', color: '#58595B' }}>
+                                        {['2026-01-15', '2026-02-01', '2026-03-10', '2026-04-05', '2026-05-20'][index % 5]}
+                                    </td>
+                                    <td style={{ fontSize: '0.75rem', color: '#58595B' }}>
+                                        {['2027-01-15', '2027-02-01', '2027-03-10', '2027-04-05', '2027-05-20'][index % 5]}
+                                    </td>
+                                    <td style={{ fontSize: '0.75rem', color: '#58595B' }}>
+                                        {['NY', 'CA', 'TX', 'FL', 'IL'][index % 5]}
+                                    </td>
+                                    <td style={{ fontSize: '0.75rem', color: '#58595B', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                                        {['ABC Insurance Agency', 'XYZ Brokers', 'Prime Partners', 'Elite Insurance', 'National Brokers'][index % 5]}
+                                    </td>
+                                    <td style={{ fontSize: '0.75rem', color: '#58595B', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                                        {['Marsh McLennan', 'Aon plc', 'Willis Towers', 'Brown & Brown', 'Gallagher'][index % 5]}
+                                    </td>
+                                    <td style={{ fontSize: '0.75rem', color: '#58595B', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                                        {['Peak Performance', 'DocuSign', 'FileNet', 'OnBase', 'Guidewire'][index % 5]}
+                                    </td>
+                                    <td className="text-center">
+                                        <Badge 
+                                            bg={['success', 'warning', 'info', 'secondary', 'primary'][index % 5]} 
+                                            style={{ fontSize: '0.65rem', padding: '4px 6px' }}
+                                        >
+                                            {['Complete', 'In Progress', 'Pending', 'Not Started', 'Review'][index % 5]}
+                                        </Badge>
+                                    </td>
+                                    <td style={{ fontSize: '0.75rem', color: '#58595B', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                                        {['Ready for DMS', 'Missing invoice', 'Awaiting quote', 'Under review', ''][index % 5]}
                                     </td>
                                 </tr>
                             ))}
@@ -233,6 +274,171 @@ const RiskScores = ({ riskScores, validationResults }) => {
                 onHide={handleCloseModal}
                 validationData={validationResults?.[selectedPolicy?.policy_number]}
             />
+
+            {/* Submission Detail Modal */}
+            <Modal 
+                show={showSubmissionModal} 
+                onHide={handleCloseSubmissionModal} 
+                size="xl"
+                centered
+            >
+                <Modal.Header closeButton style={{ backgroundColor: '#235CF4', color: 'white' }}>
+                    <Modal.Title>
+                        <span style={{ fontSize: '1rem' }}>
+                            📋 Submission Details - {selectedSubmission?.submissionId}
+                        </span>
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body style={{ maxHeight: '70vh', overflowY: 'auto' }}>
+                    {selectedSubmission && (
+                        <>
+                            {/* Submission Summary */}
+                            <div className="mb-4 p-3 bg-light rounded">
+                                <div className="row">
+                                    <div className="col-md-3">
+                                        <small className="text-muted">Policy Number</small>
+                                        <div><strong>{selectedSubmission.policy_number}</strong></div>
+                                    </div>
+                                    <div className="col-md-3">
+                                        <small className="text-muted">Policyholder</small>
+                                        <div><strong>{['Acme Corp', 'Tech Solutions Inc', 'Global Services LLC', 'Premier Holdings', 'Summit Industries'][selectedSubmission.index % 5]}</strong></div>
+                                    </div>
+                                    <div className="col-md-3">
+                                        <small className="text-muted">LOB</small>
+                                        <div><strong>{['Auto', 'Property', 'GL', 'WC', 'Umbrella'][selectedSubmission.index % 5]}</strong></div>
+                                    </div>
+                                    <div className="col-md-3">
+                                        <small className="text-muted">Status</small>
+                                        <div>
+                                            <Badge bg={selectedSubmission.risk_level === 'Critical' ? 'danger' : selectedSubmission.risk_level === 'High' ? 'warning' : 'success'}>
+                                                {selectedSubmission.risk_level}
+                                            </Badge>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <Accordion defaultActiveKey="0" className="mb-3">
+                                {/* Folder/File Structure */}
+                                <Accordion.Item eventKey="0">
+                                    <Accordion.Header>
+                                        <span style={{ fontWeight: 600 }}>📁 Folder/File Structure</span>
+                                    </Accordion.Header>
+                                    <Accordion.Body>
+                                        <div className="file-structure" style={{ fontFamily: 'monospace', fontSize: '0.85rem' }}>
+                                            <div className="folder" style={{ marginBottom: '8px' }}>
+                                                <span style={{ color: '#235CF4' }}>📁</span> <strong>{selectedSubmission.policy_number}/</strong>
+                                                <div style={{ marginLeft: '24px' }}>
+                                                    <div style={{ marginBottom: '4px' }}>
+                                                        <span style={{ color: '#235CF4' }}>📁</span> <strong>Policy Documents/</strong>
+                                                        <div style={{ marginLeft: '24px', color: '#58595B' }}>
+                                                            <div>📄 Policy_Declaration.pdf {selectedSubmission.index % 2 === 0 ? <Badge bg="success" style={{ fontSize: '0.65rem' }}>✓</Badge> : <Badge bg="danger" style={{ fontSize: '0.65rem' }}>Missing</Badge>}</div>
+                                                            <div>📄 Endorsements.pdf <Badge bg="success" style={{ fontSize: '0.65rem' }}>✓</Badge></div>
+                                                            <div>📄 Schedule_of_Forms.pdf <Badge bg="success" style={{ fontSize: '0.65rem' }}>✓</Badge></div>
+                                                        </div>
+                                                    </div>
+                                                    <div style={{ marginBottom: '4px' }}>
+                                                        <span style={{ color: '#235CF4' }}>📁</span> <strong>Quotes/</strong>
+                                                        <div style={{ marginLeft: '24px', color: '#58595B' }}>
+                                                            <div>📄 Quote_v1.pdf {selectedSubmission.index % 3 === 0 ? <Badge bg="danger" style={{ fontSize: '0.65rem' }}>Missing</Badge> : <Badge bg="success" style={{ fontSize: '0.65rem' }}>✓</Badge>}</div>
+                                                            <div>📄 Quote_Comparison.xlsx <Badge bg="success" style={{ fontSize: '0.65rem' }}>✓</Badge></div>
+                                                        </div>
+                                                    </div>
+                                                    <div style={{ marginBottom: '4px' }}>
+                                                        <span style={{ color: '#235CF4' }}>📁</span> <strong>Invoices/</strong>
+                                                        <div style={{ marginLeft: '24px', color: '#58595B' }}>
+                                                            <div>📄 Invoice_001.pdf {selectedSubmission.index % 4 === 0 ? <Badge bg="danger" style={{ fontSize: '0.65rem' }}>Missing</Badge> : <Badge bg="success" style={{ fontSize: '0.65rem' }}>✓</Badge>}</div>
+                                                            <div>📄 Payment_Receipt.pdf <Badge bg="success" style={{ fontSize: '0.65rem' }}>✓</Badge></div>
+                                                        </div>
+                                                    </div>
+                                                    <div style={{ marginBottom: '4px' }}>
+                                                        <span style={{ color: '#235CF4' }}>📁</span> <strong>Applications/</strong>
+                                                        <div style={{ marginLeft: '24px', color: '#58595B' }}>
+                                                            <div>📄 Application_Signed.pdf <Badge bg="success" style={{ fontSize: '0.65rem' }}>✓</Badge></div>
+                                                            <div>📄 Supplemental_App.pdf <Badge bg="success" style={{ fontSize: '0.65rem' }}>✓</Badge></div>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <span style={{ color: '#235CF4' }}>📁</span> <strong>Correspondence/</strong>
+                                                        <div style={{ marginLeft: '24px', color: '#58595B' }}>
+                                                            <div>📄 Email_Thread.msg <Badge bg="success" style={{ fontSize: '0.65rem' }}>✓</Badge></div>
+                                                            <div>📄 Binder_Letter.pdf <Badge bg="success" style={{ fontSize: '0.65rem' }}>✓</Badge></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </Accordion.Body>
+                                </Accordion.Item>
+
+                                {/* Detail Issue List */}
+                                <Accordion.Item eventKey="1">
+                                    <Accordion.Header>
+                                        <span style={{ fontWeight: 600 }}>⚠️ Detail Issue List ({selectedSubmission.issues_count || 0} issues)</span>
+                                    </Accordion.Header>
+                                    <Accordion.Body>
+                                        {selectedSubmission.issues_count > 0 ? (
+                                            <ListGroup variant="flush">
+                                                {selectedSubmission.index % 2 === 0 && (
+                                                    <ListGroup.Item className="d-flex justify-content-between align-items-start">
+                                                        <div>
+                                                            <div className="fw-bold text-danger">Policy Document Missing</div>
+                                                            <small className="text-muted">Policy_Declaration.pdf is required but not found in the folder structure</small>
+                                                        </div>
+                                                        <Badge bg="danger">Critical</Badge>
+                                                    </ListGroup.Item>
+                                                )}
+                                                {selectedSubmission.index % 3 === 0 && (
+                                                    <ListGroup.Item className="d-flex justify-content-between align-items-start">
+                                                        <div>
+                                                            <div className="fw-bold text-warning">Quote Missing</div>
+                                                            <small className="text-muted">Quote_v1.pdf is required for underwriting review</small>
+                                                        </div>
+                                                        <Badge bg="warning" text="dark">High</Badge>
+                                                    </ListGroup.Item>
+                                                )}
+                                                {selectedSubmission.index % 4 === 0 && (
+                                                    <ListGroup.Item className="d-flex justify-content-between align-items-start">
+                                                        <div>
+                                                            <div className="fw-bold text-warning">Invoice Missing</div>
+                                                            <small className="text-muted">Invoice_001.pdf is required for billing reconciliation</small>
+                                                        </div>
+                                                        <Badge bg="warning" text="dark">High</Badge>
+                                                    </ListGroup.Item>
+                                                )}
+                                                <ListGroup.Item className="d-flex justify-content-between align-items-start">
+                                                    <div>
+                                                        <div className="fw-bold text-info">Service Provider Validation</div>
+                                                        <small className="text-muted">Service provider information needs verification</small>
+                                                    </div>
+                                                    <Badge bg="info">Medium</Badge>
+                                                </ListGroup.Item>
+                                            </ListGroup>
+                                        ) : (
+                                            <div className="text-center py-4">
+                                                <div style={{ fontSize: '2rem' }}>✅</div>
+                                                <p className="text-success mb-0"><strong>No issues found</strong></p>
+                                                <small className="text-muted">All required documents are present and validated</small>
+                                            </div>
+                                        )}
+                                    </Accordion.Body>
+                                </Accordion.Item>
+                            </Accordion>
+                        </>
+                    )}
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="outline-primary" onClick={handleCloseSubmissionModal}>
+                        FIX NOW
+                    </Button>
+                    <Button variant="warning" onClick={handleCloseSubmissionModal}>
+                        SEND for REVIEW
+                    </Button>
+                    <Button variant="primary" onClick={handleCloseSubmissionModal}>
+                        Mark as COMPLETED
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </Card>
     );
 };

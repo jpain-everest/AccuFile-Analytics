@@ -1,0 +1,887 @@
+{
+  "timestamp": "2026-05-04T23:04:53.587102",
+  "summary": {
+    "total_policies": 15,
+    "matched_files": 14,
+    "missing_files": 1,
+    "match_rate": 93.33333333333333,
+    "average_risk_score": 30.0,
+    "risk_distribution": {
+      "Minimal": 3,
+      "Medium": 1,
+      "High": 5,
+      "Critical": 1,
+      "Low": 4
+    }
+  },
+  "policy_risk_scores": [
+    {
+      "policy_number": "AH-2024-001001",
+      "risk_score": 0,
+      "risk_level": "Minimal",
+      "is_compliant": true,
+      "missing_documents": [],
+      "issues_count": 0
+    },
+    {
+      "policy_number": "AH-2024-001002",
+      "risk_score": 35,
+      "risk_level": "Medium",
+      "is_compliant": false,
+      "missing_documents": [
+        "Quote/Binder"
+      ],
+      "issues_count": 1
+    },
+    {
+      "policy_number": "AH-2024-001003",
+      "risk_score": 55,
+      "risk_level": "High",
+      "is_compliant": false,
+      "missing_documents": [
+        "Application",
+        "Policy Document"
+      ],
+      "issues_count": 1
+    },
+    {
+      "policy_number": "AH-2024-001004",
+      "risk_score": 50,
+      "risk_level": "High",
+      "is_compliant": false,
+      "missing_documents": [
+        "Quote/Binder"
+      ],
+      "issues_count": 2
+    },
+    {
+      "policy_number": "AH-2024-001005",
+      "risk_score": 50,
+      "risk_level": "High",
+      "is_compliant": false,
+      "missing_documents": [
+        "Policy Document"
+      ],
+      "issues_count": 2
+    },
+    {
+      "policy_number": "AH-2024-001006",
+      "risk_score": 50,
+      "risk_level": "High",
+      "is_compliant": false,
+      "missing_documents": [
+        "Quote/Binder"
+      ],
+      "issues_count": 2
+    },
+    {
+      "policy_number": "AH-2024-001007",
+      "risk_score": 0,
+      "risk_level": "Minimal",
+      "is_compliant": true,
+      "missing_documents": [],
+      "issues_count": 0
+    },
+    {
+      "policy_number": "AH-2024-001008",
+      "risk_score": 70,
+      "risk_level": "Critical",
+      "is_compliant": false,
+      "missing_documents": [
+        "Application",
+        "Quote/Binder"
+      ],
+      "issues_count": 2
+    },
+    {
+      "policy_number": "AH-2024-001009",
+      "risk_score": 15,
+      "risk_level": "Low",
+      "is_compliant": false,
+      "missing_documents": [],
+      "issues_count": 1
+    },
+    {
+      "policy_number": "AH-2024-001010",
+      "risk_score": 15,
+      "risk_level": "Low",
+      "is_compliant": false,
+      "missing_documents": [],
+      "issues_count": 1
+    },
+    {
+      "policy_number": "AH-2024-001011",
+      "risk_score": 50,
+      "risk_level": "High",
+      "is_compliant": false,
+      "missing_documents": [
+        "Quote/Binder"
+      ],
+      "issues_count": 2
+    },
+    {
+      "policy_number": "AH-2024-001012",
+      "risk_score": 0,
+      "risk_level": "Minimal",
+      "is_compliant": true,
+      "missing_documents": [],
+      "issues_count": 0
+    },
+    {
+      "policy_number": "AH-2024-001014",
+      "risk_score": 15,
+      "risk_level": "Low",
+      "is_compliant": false,
+      "missing_documents": [],
+      "issues_count": 1
+    },
+    {
+      "policy_number": "AH-2024-001015",
+      "risk_score": 15,
+      "risk_level": "Low",
+      "is_compliant": false,
+      "missing_documents": [],
+      "issues_count": 1
+    }
+  ],
+  "matched_files": [
+    {
+      "policy_number": "AH-2024-001001",
+      "insured_name": "Acme Corporation",
+      "policy_type": "commercial",
+      "effective_date": "2024-01-15",
+      "expiration_date": "2025-01-15",
+      "premium": 45000.0,
+      "status": "active",
+      "underwriter": "J. Smith",
+      "line_of_business": "Group Accident",
+      "state": "NY",
+      "matched_file": {
+        "full_path": "C:\\Users\\jpain\\A-H-AccuFile\\backend\\data\\shared_drive\\Acme_Corporation",
+        "folder_name": "Acme_Corporation",
+        "files": [
+          {
+            "filename": "AH-2024-001001_application.pdf",
+            "relative_path": "Documents\\AH-2024-001001_application.pdf",
+            "size": 61
+          },
+          {
+            "filename": "AH-2024-001001_binder.pdf",
+            "relative_path": "Documents\\AH-2024-001001_binder.pdf",
+            "size": 53
+          },
+          {
+            "filename": "AH-2024-001001_inspection_report.pdf",
+            "relative_path": "Documents\\AH-2024-001001_inspection_report.pdf",
+            "size": 41
+          },
+          {
+            "filename": "AH-2024-001001_policy.pdf",
+            "relative_path": "Documents\\AH-2024-001001_policy.pdf",
+            "size": 46
+          },
+          {
+            "filename": "uw_notes.docx",
+            "relative_path": "Underwriting\\uw_notes.docx",
+            "size": 34
+          }
+        ],
+        "file_count": 5
+      },
+      "match_confidence": 0.75
+    },
+    {
+      "policy_number": "AH-2024-001002",
+      "insured_name": "Beta Industries LLC",
+      "policy_type": "commercial",
+      "effective_date": "2024-02-01",
+      "expiration_date": "2025-02-01",
+      "premium": 32000.0,
+      "status": "active",
+      "underwriter": "M. Johnson",
+      "line_of_business": "Occupational Accident",
+      "state": "TX",
+      "matched_file": {
+        "full_path": "C:\\Users\\jpain\\A-H-AccuFile\\backend\\data\\shared_drive\\Beta_Industries_LLC",
+        "folder_name": "Beta_Industries_LLC",
+        "files": [
+          {
+            "filename": "AH-2024-001002_application.pdf",
+            "relative_path": "Documents\\AH-2024-001002_application.pdf",
+            "size": 38
+          },
+          {
+            "filename": "AH-2024-001002_policy.pdf",
+            "relative_path": "Documents\\AH-2024-001002_policy.pdf",
+            "size": 37
+          }
+        ],
+        "file_count": 2
+      },
+      "match_confidence": 0.75
+    },
+    {
+      "policy_number": "AH-2024-001003",
+      "insured_name": "Gamma Healthcare Group",
+      "policy_type": "commercial",
+      "effective_date": "2024-02-15",
+      "expiration_date": "2025-02-15",
+      "premium": 78000.0,
+      "status": "active",
+      "underwriter": "J. Smith",
+      "line_of_business": "Group Accident",
+      "state": "CA",
+      "matched_file": {
+        "full_path": "C:\\Users\\jpain\\A-H-AccuFile\\backend\\data\\shared_drive\\Gamma_Healthcare_Group",
+        "folder_name": "Gamma_Healthcare_Group",
+        "files": [
+          {
+            "filename": "AH-2024-001003_binder.pdf",
+            "relative_path": "Documents\\AH-2024-001003_binder.pdf",
+            "size": 30
+          },
+          {
+            "filename": "AH-2024-001003_medical_records.pdf",
+            "relative_path": "Documents\\AH-2024-001003_medical_records.pdf",
+            "size": 28
+          }
+        ],
+        "file_count": 2
+      },
+      "match_confidence": 0.75
+    },
+    {
+      "policy_number": "AH-2024-001004",
+      "insured_name": "Delta Construction Co",
+      "policy_type": "commercial",
+      "effective_date": "2024-03-01",
+      "expiration_date": "2025-03-01",
+      "premium": 55000.0,
+      "status": "active",
+      "underwriter": "A. Williams",
+      "line_of_business": "Occupational Accident",
+      "state": "FL",
+      "matched_file": {
+        "full_path": "C:\\Users\\jpain\\A-H-AccuFile\\backend\\data\\shared_drive\\Beta_Industries_LLC",
+        "folder_name": "Beta_Industries_LLC",
+        "files": [
+          {
+            "filename": "AH-2024-001002_application.pdf",
+            "relative_path": "Documents\\AH-2024-001002_application.pdf",
+            "size": 38
+          },
+          {
+            "filename": "AH-2024-001002_policy.pdf",
+            "relative_path": "Documents\\AH-2024-001002_policy.pdf",
+            "size": 37
+          }
+        ],
+        "file_count": 2
+      },
+      "match_confidence": 0.75
+    },
+    {
+      "policy_number": "AH-2024-001005",
+      "insured_name": "Epsilon Logistics Inc",
+      "policy_type": "commercial",
+      "effective_date": "2024-03-15",
+      "expiration_date": "2025-03-15",
+      "premium": 28000.0,
+      "status": "active",
+      "underwriter": "M. Johnson",
+      "line_of_business": "Group Accident",
+      "state": "IL",
+      "matched_file": {
+        "full_path": "C:\\Users\\jpain\\A-H-AccuFile\\backend\\data\\shared_drive\\Delta_Construction_Co",
+        "folder_name": "Delta_Construction_Co",
+        "files": [
+          {
+            "filename": "AH-2024-001004_app.pdf",
+            "relative_path": "Documents\\AH-2024-001004_app.pdf",
+            "size": 37
+          },
+          {
+            "filename": "AH-2024-001004_quote.pdf",
+            "relative_path": "Documents\\AH-2024-001004_quote.pdf",
+            "size": 31
+          },
+          {
+            "filename": "site_inspection_2024.pdf",
+            "relative_path": "Inspections\\site_inspection_2024.pdf",
+            "size": 27
+          }
+        ],
+        "file_count": 3
+      },
+      "match_confidence": 0.75
+    },
+    {
+      "policy_number": "AH-2024-001006",
+      "insured_name": "Zeta Manufacturing",
+      "policy_type": "commercial",
+      "effective_date": "2024-04-01",
+      "expiration_date": "2025-04-01",
+      "premium": 62000.0,
+      "status": "active",
+      "underwriter": "J. Smith",
+      "line_of_business": "Occupational Accident",
+      "state": "OH",
+      "matched_file": {
+        "full_path": "C:\\Users\\jpain\\A-H-AccuFile\\backend\\data\\shared_drive\\Zeta_Manufacturing",
+        "folder_name": "Zeta_Manufacturing",
+        "files": [
+          {
+            "filename": "policy_doc.pdf",
+            "relative_path": "Documents\\policy_doc.pdf",
+            "size": 15
+          },
+          {
+            "filename": "zeta_mfg_app.pdf",
+            "relative_path": "Documents\\zeta_mfg_app.pdf",
+            "size": 37
+          }
+        ],
+        "file_count": 2
+      },
+      "match_confidence": 0.75
+    },
+    {
+      "policy_number": "AH-2024-001007",
+      "insured_name": "Eta Services Group",
+      "policy_type": "individual",
+      "effective_date": "2024-04-15",
+      "expiration_date": "2025-04-15",
+      "premium": 8500.0,
+      "status": "active",
+      "underwriter": "A. Williams",
+      "line_of_business": "Individual Accident",
+      "state": "PA",
+      "matched_file": {
+        "full_path": "C:\\Users\\jpain\\A-H-AccuFile\\backend\\data\\shared_drive\\Eta_Services_Group",
+        "folder_name": "Eta_Services_Group",
+        "files": [
+          {
+            "filename": "AH-2024-001007_application.pdf",
+            "relative_path": "Documents\\AH-2024-001007_application.pdf",
+            "size": 31
+          },
+          {
+            "filename": "AH-2024-001007_policy.pdf",
+            "relative_path": "Documents\\AH-2024-001007_policy.pdf",
+            "size": 28
+          },
+          {
+            "filename": "AH-2024-001007_quote.pdf",
+            "relative_path": "Documents\\AH-2024-001007_quote.pdf",
+            "size": 25
+          }
+        ],
+        "file_count": 3
+      },
+      "match_confidence": 0.75
+    },
+    {
+      "policy_number": "AH-2024-001008",
+      "insured_name": "Theta Energy Corp",
+      "policy_type": "commercial",
+      "effective_date": "2024-05-01",
+      "expiration_date": "2025-05-01",
+      "premium": 95000.0,
+      "status": "active",
+      "underwriter": "J. Smith",
+      "line_of_business": "Group Accident",
+      "state": "TX",
+      "matched_file": {
+        "full_path": "C:\\Users\\jpain\\A-H-AccuFile\\backend\\data\\shared_drive\\Theta_Energy_Corp",
+        "folder_name": "Theta_Energy_Corp",
+        "files": [
+          {
+            "filename": "AH-2024-001008_policy.pdf",
+            "relative_path": "AH-2024-001008_policy.pdf",
+            "size": 37
+          }
+        ],
+        "file_count": 1
+      },
+      "match_confidence": 0.75
+    },
+    {
+      "policy_number": "AH-2024-001009",
+      "insured_name": "Iota Financial Partners",
+      "policy_type": "commercial",
+      "effective_date": "2024-05-15",
+      "expiration_date": "2025-05-15",
+      "premium": 41000.0,
+      "status": "active",
+      "underwriter": "M. Johnson",
+      "line_of_business": "Occupational Accident",
+      "state": "NJ",
+      "matched_file": {
+        "full_path": "C:\\Users\\jpain\\A-H-AccuFile\\backend\\data\\shared_drive\\Acme_Corporation",
+        "folder_name": "Acme_Corporation",
+        "files": [
+          {
+            "filename": "AH-2024-001001_application.pdf",
+            "relative_path": "Documents\\AH-2024-001001_application.pdf",
+            "size": 61
+          },
+          {
+            "filename": "AH-2024-001001_binder.pdf",
+            "relative_path": "Documents\\AH-2024-001001_binder.pdf",
+            "size": 53
+          },
+          {
+            "filename": "AH-2024-001001_inspection_report.pdf",
+            "relative_path": "Documents\\AH-2024-001001_inspection_report.pdf",
+            "size": 41
+          },
+          {
+            "filename": "AH-2024-001001_policy.pdf",
+            "relative_path": "Documents\\AH-2024-001001_policy.pdf",
+            "size": 46
+          },
+          {
+            "filename": "uw_notes.docx",
+            "relative_path": "Underwriting\\uw_notes.docx",
+            "size": 34
+          }
+        ],
+        "file_count": 5
+      },
+      "match_confidence": 0.75
+    },
+    {
+      "policy_number": "AH-2024-001010",
+      "insured_name": "Kappa Staffing Solutions",
+      "policy_type": "commercial",
+      "effective_date": "2024-06-01",
+      "expiration_date": "2025-06-01",
+      "premium": 37000.0,
+      "status": "active",
+      "underwriter": "A. Williams",
+      "line_of_business": "Group Accident",
+      "state": "GA",
+      "matched_file": {
+        "full_path": "C:\\Users\\jpain\\A-H-AccuFile\\backend\\data\\shared_drive\\Iota_Financial_Partners",
+        "folder_name": "Iota_Financial_Partners",
+        "files": [
+          {
+            "filename": "AH-2024-001009_application.pdf",
+            "relative_path": "Documents\\AH-2024-001009_application.pdf",
+            "size": 33
+          },
+          {
+            "filename": "AH-2024-001009_policy.pdf",
+            "relative_path": "Documents\\AH-2024-001009_policy.pdf",
+            "size": 28
+          },
+          {
+            "filename": "AH-2024-001009_proposal.pdf",
+            "relative_path": "Documents\\AH-2024-001009_proposal.pdf",
+            "size": 30
+          }
+        ],
+        "file_count": 3
+      },
+      "match_confidence": 0.75
+    },
+    {
+      "policy_number": "AH-2024-001011",
+      "insured_name": "Lambda Tech Ventures",
+      "policy_type": "individual",
+      "effective_date": "2024-06-15",
+      "expiration_date": "2025-06-15",
+      "premium": 12000.0,
+      "status": "active",
+      "underwriter": "J. Smith",
+      "line_of_business": "Individual Accident",
+      "state": "WA",
+      "matched_file": {
+        "full_path": "C:\\Users\\jpain\\A-H-AccuFile\\backend\\data\\shared_drive\\Beta_Industries_LLC",
+        "folder_name": "Beta_Industries_LLC",
+        "files": [
+          {
+            "filename": "AH-2024-001002_application.pdf",
+            "relative_path": "Documents\\AH-2024-001002_application.pdf",
+            "size": 38
+          },
+          {
+            "filename": "AH-2024-001002_policy.pdf",
+            "relative_path": "Documents\\AH-2024-001002_policy.pdf",
+            "size": 37
+          }
+        ],
+        "file_count": 2
+      },
+      "match_confidence": 0.75
+    },
+    {
+      "policy_number": "AH-2024-001012",
+      "insured_name": "Mu Transport LLC",
+      "policy_type": "commercial",
+      "effective_date": "2024-07-01",
+      "expiration_date": "2025-07-01",
+      "premium": 48000.0,
+      "status": "active",
+      "underwriter": "M. Johnson",
+      "line_of_business": "Occupational Accident",
+      "state": "MI",
+      "matched_file": {
+        "full_path": "C:\\Users\\jpain\\A-H-AccuFile\\backend\\data\\shared_drive\\Mu_Transport_LLC",
+        "folder_name": "Mu_Transport_LLC",
+        "files": [
+          {
+            "filename": "AH-2024-001012_application.pdf",
+            "relative_path": "Documents\\AH-2024-001012_application.pdf",
+            "size": 31
+          },
+          {
+            "filename": "AH-2024-001012_medical_uw.pdf",
+            "relative_path": "Documents\\AH-2024-001012_medical_uw.pdf",
+            "size": 32
+          },
+          {
+            "filename": "AH-2024-001012_policy.pdf",
+            "relative_path": "Documents\\AH-2024-001012_policy.pdf",
+            "size": 28
+          },
+          {
+            "filename": "AH-2024-001012_quote.pdf",
+            "relative_path": "Documents\\AH-2024-001012_quote.pdf",
+            "size": 25
+          }
+        ],
+        "file_count": 4
+      },
+      "match_confidence": 0.75
+    },
+    {
+      "policy_number": "AH-2024-001014",
+      "insured_name": "Xi Agricultural Co-op",
+      "policy_type": "commercial",
+      "effective_date": "2024-08-01",
+      "expiration_date": "2025-08-01",
+      "premium": 29000.0,
+      "status": "active",
+      "underwriter": "J. Smith",
+      "line_of_business": "Occupational Accident",
+      "state": "IA",
+      "matched_file": {
+        "full_path": "C:\\Users\\jpain\\A-H-AccuFile\\backend\\data\\shared_drive\\Eta_Services_Group",
+        "folder_name": "Eta_Services_Group",
+        "files": [
+          {
+            "filename": "AH-2024-001007_application.pdf",
+            "relative_path": "Documents\\AH-2024-001007_application.pdf",
+            "size": 31
+          },
+          {
+            "filename": "AH-2024-001007_policy.pdf",
+            "relative_path": "Documents\\AH-2024-001007_policy.pdf",
+            "size": 28
+          },
+          {
+            "filename": "AH-2024-001007_quote.pdf",
+            "relative_path": "Documents\\AH-2024-001007_quote.pdf",
+            "size": 25
+          }
+        ],
+        "file_count": 3
+      },
+      "match_confidence": 0.75
+    },
+    {
+      "policy_number": "AH-2024-001015",
+      "insured_name": "Omicron Education Foundation",
+      "policy_type": "commercial",
+      "effective_date": "2024-08-15",
+      "expiration_date": "2025-08-15",
+      "premium": 67000.0,
+      "status": "active",
+      "underwriter": "M. Johnson",
+      "line_of_business": "Group Accident",
+      "state": "MA",
+      "matched_file": {
+        "full_path": "C:\\Users\\jpain\\A-H-AccuFile\\backend\\data\\shared_drive\\Acme_Corporation",
+        "folder_name": "Acme_Corporation",
+        "files": [
+          {
+            "filename": "AH-2024-001001_application.pdf",
+            "relative_path": "Documents\\AH-2024-001001_application.pdf",
+            "size": 61
+          },
+          {
+            "filename": "AH-2024-001001_binder.pdf",
+            "relative_path": "Documents\\AH-2024-001001_binder.pdf",
+            "size": 53
+          },
+          {
+            "filename": "AH-2024-001001_inspection_report.pdf",
+            "relative_path": "Documents\\AH-2024-001001_inspection_report.pdf",
+            "size": 41
+          },
+          {
+            "filename": "AH-2024-001001_policy.pdf",
+            "relative_path": "Documents\\AH-2024-001001_policy.pdf",
+            "size": 46
+          },
+          {
+            "filename": "uw_notes.docx",
+            "relative_path": "Underwriting\\uw_notes.docx",
+            "size": 34
+          }
+        ],
+        "file_count": 5
+      },
+      "match_confidence": 0.75
+    }
+  ],
+  "missing_files": [
+    {
+      "policy_number": "AH-2024-001013",
+      "insured_name": "Nu Hospitality Group",
+      "status": "MISSING"
+    }
+  ],
+  "validation_results": {
+    "AH-2024-001001": {
+      "policy_number": "AH-2024-001001",
+      "is_compliant": true,
+      "checks": {
+        "required_documents": true,
+        "folder_structure": true,
+        "naming_conventions": true,
+        "metadata": true
+      },
+      "missing_documents": [],
+      "issues": [],
+      "risk_score": 0,
+      "risk_level": "Minimal"
+    },
+    "AH-2024-001002": {
+      "policy_number": "AH-2024-001002",
+      "is_compliant": false,
+      "checks": {
+        "required_documents": false,
+        "folder_structure": true,
+        "naming_conventions": true,
+        "metadata": true
+      },
+      "missing_documents": [
+        "Quote/Binder"
+      ],
+      "issues": [
+        "Missing 1 required document(s)"
+      ],
+      "risk_score": 35,
+      "risk_level": "Medium"
+    },
+    "AH-2024-001003": {
+      "policy_number": "AH-2024-001003",
+      "is_compliant": false,
+      "checks": {
+        "required_documents": false,
+        "folder_structure": true,
+        "naming_conventions": true,
+        "metadata": true
+      },
+      "missing_documents": [
+        "Application",
+        "Policy Document"
+      ],
+      "issues": [
+        "Missing 2 required document(s)"
+      ],
+      "risk_score": 55,
+      "risk_level": "High"
+    },
+    "AH-2024-001004": {
+      "policy_number": "AH-2024-001004",
+      "is_compliant": false,
+      "checks": {
+        "required_documents": false,
+        "folder_structure": true,
+        "naming_conventions": false,
+        "metadata": true
+      },
+      "missing_documents": [
+        "Quote/Binder"
+      ],
+      "issues": [
+        "Missing 1 required document(s)",
+        "File/folder names do not follow conventions"
+      ],
+      "risk_score": 50,
+      "risk_level": "High"
+    },
+    "AH-2024-001005": {
+      "policy_number": "AH-2024-001005",
+      "is_compliant": false,
+      "checks": {
+        "required_documents": false,
+        "folder_structure": true,
+        "naming_conventions": false,
+        "metadata": true
+      },
+      "missing_documents": [
+        "Policy Document"
+      ],
+      "issues": [
+        "Missing 1 required document(s)",
+        "File/folder names do not follow conventions"
+      ],
+      "risk_score": 50,
+      "risk_level": "High"
+    },
+    "AH-2024-001006": {
+      "policy_number": "AH-2024-001006",
+      "is_compliant": false,
+      "checks": {
+        "required_documents": false,
+        "folder_structure": true,
+        "naming_conventions": false,
+        "metadata": true
+      },
+      "missing_documents": [
+        "Quote/Binder"
+      ],
+      "issues": [
+        "Missing 1 required document(s)",
+        "File/folder names do not follow conventions"
+      ],
+      "risk_score": 50,
+      "risk_level": "High"
+    },
+    "AH-2024-001007": {
+      "policy_number": "AH-2024-001007",
+      "is_compliant": true,
+      "checks": {
+        "required_documents": true,
+        "folder_structure": true,
+        "naming_conventions": true,
+        "metadata": true
+      },
+      "missing_documents": [],
+      "issues": [],
+      "risk_score": 0,
+      "risk_level": "Minimal"
+    },
+    "AH-2024-001008": {
+      "policy_number": "AH-2024-001008",
+      "is_compliant": false,
+      "checks": {
+        "required_documents": false,
+        "folder_structure": false,
+        "naming_conventions": true,
+        "metadata": true
+      },
+      "missing_documents": [
+        "Application",
+        "Quote/Binder"
+      ],
+      "issues": [
+        "Missing 2 required document(s)",
+        "Folder structure does not match standard"
+      ],
+      "risk_score": 70,
+      "risk_level": "Critical"
+    },
+    "AH-2024-001009": {
+      "policy_number": "AH-2024-001009",
+      "is_compliant": false,
+      "checks": {
+        "required_documents": true,
+        "folder_structure": true,
+        "naming_conventions": false,
+        "metadata": true
+      },
+      "missing_documents": [],
+      "issues": [
+        "File/folder names do not follow conventions"
+      ],
+      "risk_score": 15,
+      "risk_level": "Low"
+    },
+    "AH-2024-001010": {
+      "policy_number": "AH-2024-001010",
+      "is_compliant": false,
+      "checks": {
+        "required_documents": true,
+        "folder_structure": true,
+        "naming_conventions": false,
+        "metadata": true
+      },
+      "missing_documents": [],
+      "issues": [
+        "File/folder names do not follow conventions"
+      ],
+      "risk_score": 15,
+      "risk_level": "Low"
+    },
+    "AH-2024-001011": {
+      "policy_number": "AH-2024-001011",
+      "is_compliant": false,
+      "checks": {
+        "required_documents": false,
+        "folder_structure": true,
+        "naming_conventions": false,
+        "metadata": true
+      },
+      "missing_documents": [
+        "Quote/Binder"
+      ],
+      "issues": [
+        "Missing 1 required document(s)",
+        "File/folder names do not follow conventions"
+      ],
+      "risk_score": 50,
+      "risk_level": "High"
+    },
+    "AH-2024-001012": {
+      "policy_number": "AH-2024-001012",
+      "is_compliant": true,
+      "checks": {
+        "required_documents": true,
+        "folder_structure": true,
+        "naming_conventions": true,
+        "metadata": true
+      },
+      "missing_documents": [],
+      "issues": [],
+      "risk_score": 0,
+      "risk_level": "Minimal"
+    },
+    "AH-2024-001014": {
+      "policy_number": "AH-2024-001014",
+      "is_compliant": false,
+      "checks": {
+        "required_documents": true,
+        "folder_structure": true,
+        "naming_conventions": false,
+        "metadata": true
+      },
+      "missing_documents": [],
+      "issues": [
+        "File/folder names do not follow conventions"
+      ],
+      "risk_score": 15,
+      "risk_level": "Low"
+    },
+    "AH-2024-001015": {
+      "policy_number": "AH-2024-001015",
+      "is_compliant": false,
+      "checks": {
+        "required_documents": true,
+        "folder_structure": true,
+        "naming_conventions": false,
+        "metadata": true
+      },
+      "missing_documents": [],
+      "issues": [
+        "File/folder names do not follow conventions"
+      ],
+      "risk_score": 15,
+      "risk_level": "Low"
+    }
+  }
+}

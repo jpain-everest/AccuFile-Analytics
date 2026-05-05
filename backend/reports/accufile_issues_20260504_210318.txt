@@ -1,0 +1,46 @@
+================================================================================
+A&H AccuFile - Detailed Issues Report
+================================================================================
+Report Date: 2026-05-04 21:03:18
+
+MISSING FILES (No match found on Shared Drive)
+--------------------------------------------------------------------------------
+1. Policy: AH-2024-001013 - Nu Hospitality Group
+
+NON-COMPLIANT FILES (Structure/Completeness Issues)
+--------------------------------------------------------------------------------
+1. Policy: AH-2024-001002
+   Missing Documents: Quote/Binder
+   Issue: Missing 1 required document(s)
+2. Policy: AH-2024-001003
+   Missing Documents: Application, Policy Document
+   Issue: Missing 2 required document(s)
+3. Policy: AH-2024-001004
+   Missing Documents: Quote/Binder
+   Issue: Missing 1 required document(s)
+   Issue: File/folder names do not follow conventions
+4. Policy: AH-2024-001005
+   Missing Documents: Policy Document
+   Issue: Missing 1 required document(s)
+   Issue: File/folder names do not follow conventions
+5. Policy: AH-2024-001006
+   Missing Documents: Quote/Binder
+   Issue: Missing 1 required document(s)
+   Issue: File/folder names do not follow conventions
+6. Policy: AH-2024-001008
+   Missing Documents: Application, Quote/Binder
+   Issue: Missing 2 required document(s)
+   Issue: Folder structure does not match standard
+7. Policy: AH-2024-001009
+   Issue: File/folder names do not follow conventions
+8. Policy: AH-2024-001010
+   Issue: File/folder names do not follow conventions
+9. Policy: AH-2024-001011
+   Missing Documents: Quote/Binder
+   Issue: Missing 1 required document(s)
+   Issue: File/folder names do not follow conventions
+10. Policy: AH-2024-001014
+   Issue: File/folder names do not follow conventions
+... and 1 more non-compliant files
+
+================================================================================

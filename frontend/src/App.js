@@ -6,6 +6,7 @@ import Header from './components/Header';
 import DashboardPage from './pages/DashboardPage';
 import RiskAssessmentPage from './pages/RiskAssessmentPage';
 import ExplorerPage from './pages/ExplorerPage';
+import ConfigurationPage from './pages/ConfigurationPage';
 import './App.css';
 import './components/Sidebar.css';
 
@@ -72,7 +73,7 @@ function App() {
                         <Routes>
                             <Route 
                                 path="/" 
-                                element={<DashboardPage summary={summary} issues={issues} llmInsights={llmInsights} />} 
+                                element={<DashboardPage summary={summary} issues={issues} />} 
                             />
                             <Route 
                                 path="/risk-assessment" 
@@ -80,17 +81,17 @@ function App() {
                                     <RiskAssessmentPage 
                                         policyRiskScores={policyRiskScores} 
                                         validationResults={validationResults}
+                                        llmInsights={llmInsights}
                                     />
                                 } 
                             />
                             <Route 
                                 path="/explorer" 
-                                element={
-                                    <ExplorerPage 
-                                        fileStructure={fileStructure}
-                                        onFileSelect={handleFileSelect}
-                                    />
-                                } 
+                                element={<ExplorerPage />} 
+                            />
+                            <Route 
+                                path="/configuration" 
+                                element={<ConfigurationPage />} 
                             />
                             <Route path="*" element={<Navigate to="/" replace />} />
                         </Routes>
