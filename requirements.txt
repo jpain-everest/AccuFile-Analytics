@@ -1,0 +1,16 @@
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+python-dotenv==1.0.0
+pydantic==2.5.3
+pydantic-settings==2.1.0
+azure-storage-blob==12.19.0
+azure-identity==1.15.0
+
+# OpenTelemetry packages (for Dynatrace trace context)
+opentelemetry-api==1.22.0
+opentelemetry-sdk==1.22.0
+opentelemetry-instrumentation-fastapi==0.43b0
+
+# Production server
+gunicorn==21.2.0
+setuptools>=65.0.0

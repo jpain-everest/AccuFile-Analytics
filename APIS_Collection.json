@@ -1,0 +1,194 @@
+{
+  "info": {
+    "name": "AcuFile API",
+    "description": "AcuFile Backend API Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8000",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health & Root",
+      "item": [
+        {
+          "name": "Root",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/",
+              "host": ["{{baseUrl}}"],
+              "path": [""]
+            }
+          }
+        },
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["health"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Policy Reviews",
+      "item": [
+        {
+          "name": "Get All Policy Reviews",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/policy-reviews/",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "policy-reviews", ""]
+            }
+          }
+        },
+        {
+          "name": "Get All with Pagination",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/policy-reviews/?skip=0&limit=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "policy-reviews", ""],
+              "query": [
+                {"key": "skip", "value": "0"},
+                {"key": "limit", "value": "10"}
+              ]
+            }
+          }
+        },
+        {
+          "name": "Filter by Match Status - Auto",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/policy-reviews/?match_status=auto",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "policy-reviews", ""],
+              "query": [
+                {"key": "match_status", "value": "auto"}
+              ]
+            }
+          }
+        },
+        {
+          "name": "Filter by Match Status - Review",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/policy-reviews/?match_status=review",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "policy-reviews", ""],
+              "query": [
+                {"key": "match_status", "value": "review"}
+              ]
+            }
+          }
+        },
+        {
+          "name": "Filter by Match Status - None",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/policy-reviews/?match_status=none",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "policy-reviews", ""],
+              "query": [
+                {"key": "match_status", "value": "none"}
+              ]
+            }
+          }
+        },
+        {
+          "name": "Filter by Account Name",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/policy-reviews/?account_name=Acme",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "policy-reviews", ""],
+              "query": [
+                {"key": "account_name", "value": "Acme"}
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Single Policy Review",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/policy-reviews/SUB-2026-001",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "policy-reviews", "SUB-2026-001"]
+            }
+          }
+        },
+        {
+          "name": "Create Policy Review",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"submission_number\": \"SUB-2026-100\",\n  \"run_date\": \"2026-05-05T16:00:00Z\",\n  \"business_segment\": \"Commercial\",\n  \"account_name\": \"New Test Company\",\n  \"policy_number\": \"POL-999999\",\n  \"product_type\": \"Property\",\n  \"line_of_business\": \"Commercial Property\",\n  \"matched_folder\": \"/policies/newtest/2026\",\n  \"match_score\": 85,\n  \"match_status\": \"auto\",\n  \"match_reasoning\": \"Test record created via API\",\n  \"total_pdfs_found\": 3,\n  \"available_documents\": [{\"doc_id\": \"D001\", \"doc_name\": \"Application\", \"matched_file\": \"app.pdf\", \"confidence\": 90}],\n  \"missing_documents\": [],\n  \"completeness_score\": 100,\n  \"field_extractions\": [{\"doc_id\": \"D001\", \"doc_name\": \"Application\", \"file\": \"app.pdf\", \"ocr_status\": \"complete\", \"fields\": {\"insured_name\": \"New Test Company\"}}],\n  \"fields_found_total\": 10,\n  \"fields_missing_total\": 0\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/policy-reviews/",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "policy-reviews", ""]
+            }
+          }
+        },
+        {
+          "name": "Update Policy Review",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"match_status\": \"review\",\n  \"match_reasoning\": \"Updated - needs manual review\",\n  \"completeness_score\": 75\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/policy-reviews/SUB-2026-100",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "policy-reviews", "SUB-2026-100"]
+            }
+          }
+        },
+        {
+          "name": "Delete Policy Review",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/policy-reviews/SUB-2026-100",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "policy-reviews", "SUB-2026-100"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

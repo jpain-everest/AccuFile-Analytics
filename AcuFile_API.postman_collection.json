@@ -1,0 +1,294 @@
+{
+  "info": {
+    "name": "AcuFile API",
+    "description": "AcuFile Backend API Collection - Fetches policy reviews from Azure Blob Storage",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{username}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{password}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8000",
+      "type": "string"
+    },
+    {
+      "key": "username",
+      "value": "acufile",
+      "type": "string"
+    },
+    {
+      "key": "password",
+      "value": "acufile123",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health & Root (No Auth)",
+      "item": [
+        {
+          "name": "Root",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/",
+              "host": ["{{baseUrl}}"],
+              "path": [""]
+            }
+          }
+        },
+        {
+          "name": "Health Check",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["health"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Policy Reviews",
+      "item": [
+        {
+          "name": "Get All Policy Reviews",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/policy-reviews/",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "policy-reviews", ""]
+            }
+          }
+        },
+        {
+          "name": "Get All with Pagination",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/policy-reviews/?skip=0&limit=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "policy-reviews", ""],
+              "query": [
+                {"key": "skip", "value": "0"},
+                {"key": "limit", "value": "10"}
+              ]
+            }
+          }
+        },
+        {
+          "name": "Filter by Account Name",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/policy-reviews/?account_name=YWCA",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "policy-reviews", ""],
+              "query": [
+                {"key": "account_name", "value": "YWCA"}
+              ]
+            }
+          }
+        },
+        {
+          "name": "Filter by Policy Number",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/policy-reviews/?policy_number=AHP0000173",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "policy-reviews", ""],
+              "query": [
+                {"key": "policy_number", "value": "AHP0000173"}
+              ]
+            }
+          }
+        },
+        {
+          "name": "Filter by Product Type - Participant Accident",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/policy-reviews/?product_type=Participant Accident",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "policy-reviews", ""],
+              "query": [
+                {"key": "product_type", "value": "Participant Accident"}
+              ]
+            }
+          }
+        },
+        {
+          "name": "Filter by Product Type - Business Travel Accident",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/policy-reviews/?product_type=Business Travel Accident",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "policy-reviews", ""],
+              "query": [
+                {"key": "product_type", "value": "Business Travel Accident"}
+              ]
+            }
+          }
+        },
+        {
+          "name": "Filter by Match Status - Auto",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/policy-reviews/?match_status=auto",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "policy-reviews", ""],
+              "query": [
+                {"key": "match_status", "value": "auto"}
+              ]
+            }
+          }
+        },
+        {
+          "name": "Filter by Min Match Score",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/policy-reviews/?min_match_score=99",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "policy-reviews", ""],
+              "query": [
+                {"key": "min_match_score", "value": "99"}
+              ]
+            }
+          }
+        },
+        {
+          "name": "Filter by Completeness Score - 100%",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/policy-reviews/?min_completeness=100",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "policy-reviews", ""],
+              "query": [
+                {"key": "min_completeness", "value": "100"}
+              ]
+            }
+          }
+        },
+        {
+          "name": "Filter by Low Completeness (<=50%)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/policy-reviews/?max_completeness=50",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "policy-reviews", ""],
+              "query": [
+                {"key": "max_completeness", "value": "50"}
+              ]
+            }
+          }
+        },
+        {
+          "name": "Filter - Has Missing Documents",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/policy-reviews/?has_missing_documents=true",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "policy-reviews", ""],
+              "query": [
+                {"key": "has_missing_documents", "value": "true"}
+              ]
+            }
+          }
+        },
+        {
+          "name": "Filter - Complete Records (No Missing Docs)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/policy-reviews/?has_missing_documents=false",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "policy-reviews", ""],
+              "query": [
+                {"key": "has_missing_documents", "value": "false"}
+              ]
+            }
+          }
+        },
+        {
+          "name": "Combined Filters Example",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/policy-reviews/?min_completeness=75&has_missing_documents=false&limit=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "policy-reviews", ""],
+              "query": [
+                {"key": "min_completeness", "value": "75"},
+                {"key": "has_missing_documents", "value": "false"},
+                {"key": "limit", "value": "20"}
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Single Policy Review",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/policy-reviews/2276837-1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "policy-reviews", "2276837-1"]
+            }
+          }
+        },
+        {
+          "name": "Get Statistics",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/policy-reviews/stats",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "policy-reviews", "stats"]
+            }
+          }
+        },
+        {
+          "name": "Refresh Cache from Blob",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/policy-reviews/refresh",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "policy-reviews", "refresh"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
