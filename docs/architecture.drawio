@@ -1,0 +1,117 @@
+<mxfile host="app.diagrams.net" agent="draw.io">
+  <diagram id="accufile-architecture" name="A&amp;H AccuFile Architecture">
+    <mxGraphModel dx="1184" dy="760" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;fontStyle=1;fontColor=#2A4E86;" value="A&amp;H AccuFile - Azure Architecture" vertex="1">
+          <mxGeometry height="40" width="500" x="550" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="user" parent="1" style="shape=actor;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;" value="Underwriter / User" vertex="1">
+          <mxGeometry height="80" width="80" x="60" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="aca-boundary" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#0078D4;strokeWidth=2;dashed=1;verticalAlign=top;fontSize=14;fontStyle=1;fontColor=#0078D4;arcSize=5;" value="Azure Container Apps" vertex="1">
+          <mxGeometry height="550" width="600" x="250" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="docker-boundary" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#555555;strokeWidth=1;dashed=1;verticalAlign=top;fontSize=11;fontColor=#555555;arcSize=5;" value="Docker Container (python:3.11-slim)" vertex="1">
+          <mxGeometry height="480" width="540" x="280" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="nginx" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#009900;strokeColor=#006600;fontColor=#ffffff;fontSize=11;align=center;" value="Nginx&#xa;(Port 80)&#xa;&#xa;• Serves React SPA&#xa;• Proxies /api/* → :8001" vertex="1">
+          <mxGeometry height="100" width="200" x="380" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="frontend" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#61DAFB;strokeColor=#333333;fontColor=#333333;fontSize=11;align=center;" value="React Frontend&#xa;(Static Build)&#xa;&#xa;• Dashboard / Summary&#xa;• Detailed Tracker&#xa;• Analytics&#xa;• Admin" vertex="1">
+          <mxGeometry height="130" width="180" x="310" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="backend" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#009688;strokeColor=#00695C;fontColor=#ffffff;fontSize=11;align=center;" value="FastAPI Backend&#xa;(Uvicorn, Port 8001)&#xa;&#xa;• /api/filereview&#xa;• /api/summary/latest&#xa;• /api/summary/total&#xa;• /api/health" vertex="1">
+          <mxGeometry height="130" width="200" x="540" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="supervisor" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FF8F00;strokeColor=#E65100;fontColor=#ffffff;fontSize=11;align=center;" value="Supervisord&#xa;(Process Manager)" vertex="1">
+          <mxGeometry height="50" width="160" x="420" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="blob-storage" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#0078D4;strokeColor=#005A9E;fontColor=#ffffff;fontSize=11;align=center;" value="Azure Blob Storage&#xa;(sourecfilestorage)&#xa;&#xa;Container: json-outputs&#xa;Prefix: output/&#xa;• analytics.json&#xa;• policy review JSONs" vertex="1">
+          <mxGeometry height="160" width="200" x="1000" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="acr" parent="1" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#0078D4;strokeColor=#005A9E;fontColor=#ffffff;fontSize=11;align=center;" value="Azure Container&#xa;Registry (ACR)&#xa;&#xa;accufile-frontend:latest" vertex="1">
+          <mxGeometry height="100" width="200" x="1000" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="github" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#24292E;strokeColor=#000000;fontColor=#ffffff;fontSize=11;align=center;" value="GitHub Actions&#xa;CI/CD Pipeline&#xa;&#xa;• Build Docker image&#xa;• Push to ACR&#xa;• Deploy to Container Apps" vertex="1">
+          <mxGeometry height="120" width="200" x="1000" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="logic-app" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#5C2D91;strokeColor=#3B1F6E;fontColor=#ffffff;fontSize=11;align=center;" value="Azure Logic App&#xa;&#xa;Draft Follow Up&#xa;Email Notifications" vertex="1">
+          <mxGeometry height="80" width="200" x="1000" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="chatbot" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7B1FA2;strokeColor=#4A148C;fontColor=#ffffff;fontSize=11;align=center;" value="AccuFile Chatbot&#xa;(Azure App Service)&#xa;&#xa;Sonar iframe" vertex="1">
+          <mxGeometry height="80" width="200" x="1000" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-user-nginx" edge="1" parent="1" source="user" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="nginx">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-user-nginx-label" connectable="0" parent="edge-user-nginx" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;" value="HTTPS" vertex="1">
+          <mxGeometry relative="1" x="-0.2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-nginx-fe" edge="1" parent="1" source="nginx" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;exitX=0.25;exitY=1;entryX=0.5;entryY=0;" target="frontend">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-nginx-fe-label" connectable="0" parent="edge-nginx-fe" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;" value="Static files" vertex="1">
+          <mxGeometry relative="1" x="-0.2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-nginx-be" edge="1" parent="1" source="nginx" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;exitX=0.75;exitY=1;entryX=0.5;entryY=0;" target="backend">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-nginx-be-label" connectable="0" parent="edge-nginx-be" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;" value="/api/* proxy" vertex="1">
+          <mxGeometry relative="1" x="-0.2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-be-blob" edge="1" parent="1" source="backend" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;exitX=1;exitY=0.3;entryX=0;entryY=0.5;" target="blob-storage">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-be-blob-label" connectable="0" parent="edge-be-blob" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;" value="Azure SDK&#xa;(account key auth)" vertex="1">
+          <mxGeometry relative="1" x="-0.2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-be-logic" edge="1" parent="1" source="backend" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;exitX=1;exitY=0.7;entryX=0;entryY=0.5;" target="logic-app">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-be-logic-label" connectable="0" parent="edge-be-logic" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;" value="HTTP POST&#xa;(Follow Up)" vertex="1">
+          <mxGeometry relative="1" x="-0.2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-sup-nginx" edge="1" parent="1" source="supervisor" style="edgeStyle=orthogonalEdgeStyle;rounded=1;dashed=1;strokeColor=#999999;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" target="nginx">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-sup-nginx-label" connectable="0" parent="edge-sup-nginx" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=9;fontColor=#999999;" value="manages" vertex="1">
+          <mxGeometry relative="1" x="-0.2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-acr-aca" edge="1" parent="1" source="acr" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;exitX=0;exitY=0.5;entryX=1;entryY=0;" target="aca-boundary">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-acr-aca-label" connectable="0" parent="edge-acr-aca" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;" value="deploy image" vertex="1">
+          <mxGeometry relative="1" x="-0.2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-fe-chat" edge="1" parent="1" source="frontend" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;exitX=0.5;exitY=1;entryX=0;entryY=0.5;dashed=1;" target="chatbot">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="400" y="720" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-fe-chat-label" connectable="0" parent="edge-fe-chat" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;" value="iframe embed" vertex="1">
+          <mxGeometry relative="1" x="-0.2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,40 @@
+:root {
+  --everest-blue: #0056D2;
+  --everest-dark: #000000;
+  --everest-light: #FFFFFF;
+  --everest-gray-light: #F4F7F9;
+  --everest-gray-medium: #E2E8F0;
+  --everest-gray-dark: #4A5568;
+  --everest-accent: #00A3E0;
+  --everest-surface-1: #F1F6FF;
+  --everest-surface-2: #E7F0FF;
+  --everest-surface-3: #DCE8FF;
+  --everest-border-strong: #C7D7F5;
+  --everest-header-grad-start: #0A4DB3;
+  --everest-header-grad-end: #002D72;
+  --everest-navbar-grad-start: #031C45;
+  --everest-navbar-grad-end: #0056D2;
+  --font-primary: 'Montserrat', sans-serif;
+  --font-secondary: 'Inter', sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-secondary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--everest-gray-light);
+  color: var(--everest-dark);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

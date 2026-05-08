@@ -1,0 +1,61 @@
+.sidebar {
+    background-color: var(--everest-light);
+    border-right: 1px solid var(--everest-gray-medium);
+    height: 100vh;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header h6 {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+    font-size: 0.7rem;
+    color: var(--everest-gray-dark);
+}
+
+.sidebar .btn {
+    border-radius: 0 !important;
+    padding: 15px;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.sidebar .btn-primary {
+    background-color: var(--everest-blue);
+}
+
+.sidebar .btn-primary:hover {
+    background-color: var(--everest-dark);
+}
+
+.sidebar-nav-link {
+    font-family: var(--font-primary);
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: var(--everest-gray-dark) !important;
+    padding: 12px 15px !important;
+    border-left: 3px solid transparent;
+    transition: all 0.2s ease;
+    letter-spacing: 1px;
+}
+
+.sidebar-nav-link:hover {
+    background-color: var(--everest-gray-light);
+    color: var(--everest-blue) !important;
+}
+
+.sidebar-nav-link.active {
+    background-color: var(--everest-gray-medium);
+    color: var(--everest-blue) !important;
+    border-left-color: var(--everest-blue);
+    font-weight: 700;
+}
+
+.sidebar-section {
+    margin-top: 30px;
+}
